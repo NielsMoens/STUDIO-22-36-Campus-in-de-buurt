@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/demo-map-campus_in_de_buurt.iml" filepath="$PROJECT_DIR$/.idea/demo-map-campus_in_de_buurt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../react-map-gl/.idea/react-map-gl.iml" filepath="$PROJECT_DIR$/../react-map-gl/.idea/react-map-gl.iml" />
     </modules>
   </component>
 </project>
