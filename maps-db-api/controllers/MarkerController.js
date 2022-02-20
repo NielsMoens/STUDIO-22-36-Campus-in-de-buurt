@@ -1,0 +1,119 @@
+const NotFoundError = require('../errors/NotFoundError');
+const ValidationError = require('../errors/ValidationError');
+const { Marker } = require('../models/Marker');
+
+class MarkerController {
+        
+    getMarkers = async(req, res, next) => {
+        try {
+            const markers = await Marker.find().exec();
+            res.status(200).json(markers);
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    getMarkerById = async(req, res, next) => {
+        try {
+            const {id} = req.params;
+            const Marker = await Marker.findById(id).exec();
+            if(marker) {
+                res.status(200).json(marker);
+            } else {
+                next(new NotFoundError());
+            }
+        } catch(e) {
+            next(e);
+        }
+    }
+
+    // getMoviesByDirectorId = async(req, res, next) => {
+    //     try {
+    //         const {id} = req.params;
+    //         const movies = await Movie.find({directorId: id}).exec();
+    //         if(movies) {
+    //             res.status(200).json(movies);
+    //         } else {
+    //             next(new NotFoundError());
+    //         }
+    //     } catch(e) {
+    //         next(e);
+    //     }
+    // }
+
+    // deleteDirectorById = async(req,res,next) => {
+    //     try {
+    //         const {id} = req.params;
+    //         const director = await Director.findById(id).exec();
+    //         if(director) {
+    //             // cant use pre because off multiple delete possibilities
+    //             await Movie.find({directorId: id}).exec()
+    //             .then( async(res) => {
+    //                 res.map( async(movie) => {
+    //                     movie.directorId = null;
+    //                     await movie.save();
+    //                 })
+    //             })
+    //             .then(async () => await director.remove())
+    //             res.status(200).json({director});
+    //         } else {
+    //             next(new NotFoundError());
+    //         }
+    //     } catch(e) {
+    //         next(e);
+    //     }
+    // }
+
+    // deleteDirectorByIdAndMovies = async(req,res,next) => {
+    //     try {
+    //         const {id} = req.params;
+    //         const director = await Director.findById(id).exec();
+    //         if(director) {
+    //             // cant use pre because off multiple delete possibilities
+    //             await Movie.find({directorId: id}).exec()
+    //             .then( async(res) => {
+    //                 res.map( async(movie) => {
+    //                     await movie.remove()
+    //                 })
+    //             })
+    //             .then(async () => await director.remove())
+    //             res.status(200).json({director});
+    //         } else {
+    //             next(new NotFoundError());
+    //         }
+    //     } catch(e) {
+    //         next(e);
+    //     }
+    // }
+
+    updateMarkerById = async(req,res,next) => {
+        try {
+            const {id} = req.params;
+            // find 
+            const marker = await Marker.findById(id).exec();
+            if(marker) {
+                // update
+                marker.overwrite(req.body);
+                const result = await marker.save();
+                res.status(200).json(result);
+            } else {
+                next(new NotFoundError());
+            }
+        } catch(e) {
+            next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
+        }
+    }
+    
+    createMarker = async (req, res, next) => {
+        try {
+            const marker = new Marker(req.body);
+            const c = await marker.save();
+            res.status(200).json(c);
+        } catch (e) {
+            next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
+        }
+    }
+
+}
+
+module.exports = MarkerController;
