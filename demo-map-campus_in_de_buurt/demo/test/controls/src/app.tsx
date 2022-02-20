@@ -2,6 +2,8 @@ import * as React from 'react';
 import {useState, useMemo} from 'react';
 import {render} from 'react-dom';
 import Map, {
+    ControlPosition,
+    useControl,
   Marker,
   Popup,
   NavigationControl,
@@ -9,12 +11,10 @@ import Map, {
   ScaleControl,
   GeolocateControl
 } from 'react-map-gl';
-
 import ControlPanel from './control-panel';
 import Pin from './pin';
-
-import CITIES from '../../.data/cities.json';
-
+import CITIES from '../../.data/locations.json';
+import GeocoderControl from './geocoder-control';
 const TOKEN = 'pk.eyJ1IjoibmllbHNtb2VucyIsImEiOiJja3pidnlxYnUwMG83MnVwNnB2cGd6MDJ3In0.H6aVXU_6HWClwHkXeHVd3A'; // Set your mapbox token here
 
 export default function App() {
@@ -75,8 +75,9 @@ export default function App() {
             <img width="100%" src={popupInfo.image} />
           </Popup>
         )}
+          <GeocoderControl mapboxAccessToken={TOKEN} position={"top-left"}/>
+          <GeocoderControl mapboxAccessToken={TOKEN} position={"top-left"}/>
       </Map>
-
       <ControlPanel />
     </>
   );

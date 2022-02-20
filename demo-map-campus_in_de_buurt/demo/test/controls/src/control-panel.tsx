@@ -3,9 +3,9 @@ import * as React from 'react';
 function ControlPanel() {
   return (
     <div className="control-panel">
-      <h3>Demo Interactive map </h3>
+      <h3>Test Interactive map </h3>
       <p>
-        Campus in de buurt meeting 07/02/2022
+        Buurt In De Campus ヾ(•ω•`)o
       </p>
       <div className="source-link">
         <a href="https://github.com/NielsMoens/STUDIO-22-36-Campus-in-de-buurt"
