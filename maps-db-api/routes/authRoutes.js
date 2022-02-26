@@ -27,7 +27,7 @@ authRouter.get('/markers/:id', markerController.getMarkerById); // detail
 adminRouter.post('/markers', markerController.createMarker); // add
 adminRouter.patch('/markers/:id', markerController.updateMarkerById); // update
 // adminRouter.delete('/directors/:id', directorController.deleteDirectorById); // delete
-// adminRouter.delete('/directors/:id/delete', directorController.deleteDirectorByIdAndMovies); // delete 
+// adminRouter.delete('/directors/:id/delete', directorController.deleteDirectorByIdAndMovies); // delete
 
 // Related markers
 authRouter.get('/markers/:id/relatedMarkers', relatedMarkerController.getRelatedByMarker); // overview
@@ -65,6 +65,6 @@ adminRouter.patch('/users/:id', userController.updateUser);
 authRouter.patch('/users', userController.updateSelf);
 adminRouter.post('/users', userController.register);
 
-authRouter.use(withRole(roles.admin), adminRouter);
+authRouter.use(withRole(roles.admin), adminRouter)
 
 module.exports = authRouter;

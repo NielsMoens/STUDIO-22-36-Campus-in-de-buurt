@@ -14,6 +14,11 @@ const markerSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    published: {
+        type: Boolean,
+        default: false,
+        required: false,
+    },
 }, {
   timestamps: true,  
   toJSON: {

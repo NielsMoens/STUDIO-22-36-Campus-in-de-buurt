@@ -108,9 +108,13 @@ class MarkerController {
     
     createMarker = async (req, res, next) => {
         try {
-            const marker = new Marker(req.body);
-            const c = await marker.save();
-            res.status(200).json(c);
+            const {user} = req
+            if (user.role !== 'superadmin') {
+                req.body.published = false;
+            }
+            const save = await marker.save();
+            console.log(req.body);
+            res.status(200).json(save);
         } catch (e) {
             next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
         }

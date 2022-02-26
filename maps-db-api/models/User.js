@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const { LikedMovie } = require('./LikedMovie');
 
 const roles = {
+    superadmin: 'superadmin',
     admin: 'admin',
     user: 'user',
 }
@@ -25,7 +26,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true,
-        enum: [roles.user, roles.admin],
+        enum: [roles.user, roles.admin, roles.superadmin],
         default: roles.user,
     },
 }, {
@@ -83,6 +84,9 @@ userSchema.methods = {
         });
     },
     isAdmin: function() {
+        if(this.role === roles.superadmin) {
+            return this.role === roles.superadmin
+        }
         return this.role === roles.admin;
     }
 };
