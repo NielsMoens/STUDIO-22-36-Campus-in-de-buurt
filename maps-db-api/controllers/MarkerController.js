@@ -1,6 +1,7 @@
 const NotFoundError = require('../errors/NotFoundError');
 const ValidationError = require('../errors/ValidationError');
 const { Marker } = require('../models/Marker');
+const isSuper = require('../utils/authorization');
 
 class MarkerController {
         
@@ -94,10 +95,11 @@ class MarkerController {
             // find 
             const marker = await Marker.findById(id).exec();
             if(marker) {
+                req = isSuper(req);
                 // update
                 marker.overwrite(req.body);
                 const result = await marker.save();
-                res.status(200).json(result);
+                res.status(200).json(newBody);
             } else {
                 next(new NotFoundError());
             }
