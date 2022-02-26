@@ -94,7 +94,7 @@ p{
     width: 16px;
     height: calc(100vh - 56px);
     background-color: red;
-    transition: all .2s ease-in-out;
+    transition: all $transition-time;
     &.hide{
         right: 0;
         span {
@@ -120,7 +120,7 @@ p{
     padding-right: -1.5rem;
     background-color: $white;
     transition-property: width, flex-grow, padding-left, padding-right;
-    transition: .2s ease-in-out;
+    transition: $transition-time;
     h3, h4, h5 {
         color: $text ;
     }
