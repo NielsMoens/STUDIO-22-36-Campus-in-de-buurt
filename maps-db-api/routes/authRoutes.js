@@ -65,6 +65,6 @@ adminRouter.patch('/users/:id', userController.updateUser);
 authRouter.patch('/users', userController.updateSelf);
 adminRouter.post('/users', userController.register);
 
-authRouter.use(withRole(roles.admin), adminRouter)
+authRouter.use(withRole(roles.admin), adminRouter);
 
 module.exports = authRouter;
