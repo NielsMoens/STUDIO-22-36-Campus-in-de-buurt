@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 // schema
 const markerSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
     latitude: {
         type: Number,
         required: true,

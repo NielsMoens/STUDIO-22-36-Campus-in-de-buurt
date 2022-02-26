@@ -15,8 +15,10 @@ class MarkerController {
 
     getMarkerById = async(req, res, next) => {
         try {
+
+            console.log(req.params);
             const {id} = req.params;
-            const Marker = await Marker.findById(id).exec();
+            const marker = await Marker.findById(id).exec();
             if(marker) {
                 res.status(200).json(marker);
             } else {

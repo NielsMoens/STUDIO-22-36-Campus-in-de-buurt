@@ -1,10 +1,10 @@
-const LocationCard = ({locationDetail}) => {
+const LocationCard = ({location}) => {
     return(
         <div className="locationCard">
-            <img src="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"/>
+            <img src={location.imageLink ? location.imageLink : "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640"}/>
             <article>
-                <h5>Location name</h5>
-                <p>Non nulla id id Lorem cillum qui elit ad. Ea eiusmod officia amet eu commodo Lorem dolore.</p>
+                <h5>{location.name}</h5>
+                <p>{location.description}</p>
                 <button>Read more</button>
             </article>
         </div>

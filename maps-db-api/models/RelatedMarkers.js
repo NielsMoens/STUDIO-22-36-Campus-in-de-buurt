@@ -2,6 +2,18 @@ const mongoose = require('mongoose');
 
 // schema
 const relatedMarkersSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    imageLink: {
+        type: String,
+        required: true,
+    },
     latitude: {
         type: Number,
         required: true,

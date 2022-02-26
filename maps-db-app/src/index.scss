@@ -18,11 +18,9 @@ main {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-top: 1.5rem;
     height: calc(100vh - 56px);
     width: calc(100vw - 250px);
     box-sizing: border-box;
-    padding: 0 1.5rem;
     overflow-y: auto;
 }
 
@@ -86,22 +84,54 @@ p{
     }
 }
 
+.toggler {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 600px;
+    width: 16px;
+    height: calc(100vh - 56px);
+    background-color: red;
+    transition: all .2s ease-in-out;
+    &.hide{
+        right: 0;
+        span {
+            transform: rotate(180deg);
+        }
+    }
+}
+
 .infoSidebar {
     display: flex;
-    flex-direction: column;
     align-self: flex-end;
+    overflow-x: hidden;
+    position: relative;
+    right: 0;
+    display: flex;
+    flex-direction: column;
     flex-grow: 2;
     width: 600px;
+    max-height: calc(100vh - 56px);
     box-sizing:border-box;
     padding: 16px;
     color: $text ;
     padding-right: -1.5rem;
     background-color: $white;
+    transition-property: width, flex-grow, padding-left, padding-right;
+    transition: .2s ease-in-out;
     h3, h4, h5 {
         color: $text ;
     }
+    .infoheader {
+        position: sticky;
+    }
+    article{
+        overflow-y: scroll;
+    }
     .scrollList{
-        overflow-x: scroll;
+        // overflow-y: scroll;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
@@ -122,6 +152,13 @@ p{
                 width: 100%;
             }
         }
+    }
+
+    &.hide{
+        width: 0;
+        flex-grow: 0;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
@@ -458,6 +495,7 @@ form {
     }
     main{
         width: 100%;
+        overflow-x: hidden;
         overflow-y: auto;
         min-height: calc(100% - 106px);
     }

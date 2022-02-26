@@ -1,4 +1,3 @@
-// import TimeTracker from '../TimeTracker/TimeTracker';
 import { route, Routes } from '../../../../../core/routing';
 import { Link } from 'react-router-dom';
 import {format} from 'date-fns';
