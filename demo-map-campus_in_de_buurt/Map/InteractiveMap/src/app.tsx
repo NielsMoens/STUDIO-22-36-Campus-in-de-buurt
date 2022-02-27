@@ -13,16 +13,15 @@ import Map, {
 } from 'react-map-gl';
 import ControlPanel from './control-panel';
 import Pin from './pin';
-import CITIES from '../../.data/locations.json';
+import CAMPUS from '../../.data/locations.json';
 import GeocoderControl from './geocoder-control';
 const TOKEN = 'pk.eyJ1IjoibmllbHNtb2VucyIsImEiOiJja3pidnlxYnUwMG83MnVwNnB2cGd6MDJ3In0.H6aVXU_6HWClwHkXeHVd3A'; // Set your mapbox token here
 
 export default function App() {
     const [popupInfo, setPopupInfo] = useState(null);
-
     const pins = useMemo(
         () =>
-            CITIES.map((city, index) => (
+            CAMPUS.map((city, index) => (
                 <Marker
                     key={`marker-${index}`}
                     longitude={city.longitude}
@@ -39,13 +38,13 @@ export default function App() {
         <>
             <Map
                 initialViewState={{
-                    latitude: 40,
-                    longitude: -100,
+                    latitude: 51.054340,
+                    longitude: -3.717424,
                     zoom: 3.5,
                     bearing: 0,
-                    pitch: 0
+                    pitch: 1
                 }}
-                mapStyle="mapbox://styles/mapbox/light-v10"
+                mapStyle="mapbox://styles/mapbox/streets-v10"
                 mapboxAccessToken={TOKEN}
             >
                 <GeolocateControl position="top-left" />
@@ -64,21 +63,20 @@ export default function App() {
                         onClose={() => setPopupInfo(null)}
                     >
                         <div>
-                            {popupInfo.city}, {popupInfo.state} |{' '}
+                            {popupInfo.campus}, |{' '}
                             <a
                                 target="_new"
-                                href={`http://en.wikipedia.org/w/index.php?title=Special:Search&search=${popupInfo.city}, ${popupInfo.state}`}
+                                href={`https://www.arteveldehogeschool.be/bij-ons-studeren/onze-locaties/${popupInfo.campus}`}
                             >
-                                Wikipedia
+                                Website
                             </a>
                         </div>
                         <img width="100%" src={popupInfo.image} />
                     </Popup>
                 )}
                 <GeocoderControl mapboxAccessToken={TOKEN} position={"top-left"}/>
-                <GeocoderControl mapboxAccessToken={TOKEN} position={"top-left"}/>
             </Map>
-            <ControlPanel />
+            {/*<ControlPanel />*/}
         </>
     );
 }
