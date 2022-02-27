@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {useControl, Marker, ControlPosition} from 'react-map-gl';
+// @ts-ignore
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import Pin from "./pin";
 
