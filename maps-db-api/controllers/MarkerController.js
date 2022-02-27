@@ -99,7 +99,7 @@ class MarkerController {
                 // update
                 marker.overwrite(req.body);
                 const result = await marker.save();
-                res.status(200).json(newBody);
+                res.status(200).json(result);
             } else {
                 next(new NotFoundError());
             }
@@ -110,12 +110,11 @@ class MarkerController {
     
     createMarker = async (req, res, next) => {
         try {
-            const {user} = req
-            if (user.role !== 'superadmin') {
-                req.body.published = false;
-            }
+            req = isSuper(req);
+            const marker = new Marker({
+                ...req.body,
+            });
             const save = await marker.save();
-            console.log(req.body);
             res.status(200).json(save);
         } catch (e) {
             next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
