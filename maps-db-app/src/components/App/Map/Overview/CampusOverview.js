@@ -4,7 +4,7 @@ import useFetch from '../../../../core/hooks/useFetch';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
 // import Button from '../../../Design/Button';
-import { fetchCampusById } from '../../../../core/modules/map/api';
+import { fetchCampusses } from '../../../../core/modules/map/api';
 import useAdmin from '../../../../core/hooks/useAdmin';
 import { useCallback, useState, useMemo } from 'react';
 import AddIcon from '../../../Design/AddIcon';
@@ -21,8 +21,6 @@ import GeocoderControl from '../../../Design/MapControls';
 
 
 
-
-import CAMPUS from './locations.json';
 import Pin from './pin';
 
 
@@ -30,13 +28,13 @@ import Pin from './pin';
 
 const CampusOverview = () => {
     // voor nu gewoon een gehardcode campus id, flexible maken met niels zn map example
-    const [campusId, setCampusId] = useState("621a556ab03cd81e39c9cb8e");   
+    const [campus, setCampus] = useState();   
     const [info, setInfo] = useState();
     const [toggleInfo, setToggleInfo] = useState(false);
 
     const apiCall = useCallback(() => {
-        return fetchCampusById(campusId);
-    }, [campusId])
+        return fetchCampusses();
+    }, [])
 
     const {
         data,
@@ -46,25 +44,15 @@ const CampusOverview = () => {
         refresh,
     } = useFetch(apiCall);
 
-    const handleToggle = () => {
+    const handleToggle = (campusId=null) => {
+        if(campusId) {
+            setToggleInfo(false);
+            return;
+        }
         setToggleInfo(!toggleInfo);
     }
 
     const [popupInfo, setPopupInfo] = useState(null);
-    const pins = useMemo(
-        () =>
-            CAMPUS.map((city, index) => (
-                <Marker
-                    key={`marker-${index}`}
-                    longitude={city.longitude}
-                    latitude={city.latitude}
-                    anchor="bottom"
-                >
-                    <Pin onClick={() => setPopupInfo(city)} />
-                </Marker>
-            )),
-        []
-    );
 
     return (
         <>
@@ -79,22 +67,18 @@ const CampusOverview = () => {
             {
                 data && (
                     <>
-
                         {
                             info && <Alert color="info">{info}</Alert>
                         }
 
                         {
                             <>
-
-                                {/* Hier komt da mapke */}
-
                                 <div id="map" className={toggleInfo ? 'hide' : 'show'}>
                                     <Map
                                         initialViewState={{
-                                            latitude: 51.054340,
-                                            longitude: -3.717424,
-                                            zoom: 3.5,
+                                            latitude: 51.04097,
+                                            longitude: 3.728,
+                                            zoom: 11.5,
                                             bearing: 0,
                                             pitch: 1
                                         }}
@@ -105,9 +89,22 @@ const CampusOverview = () => {
                                         <FullscreenControl position="top-left" />
                                         <NavigationControl position="top-left" />
                                         <ScaleControl />
-
-                                        {pins}
-
+                                        {data.map((campus, index) => (
+                                            <Marker
+                                                key={`marker-${index}`}
+                                                campusId={campus.id}
+                                                longitude={campus.longitude}
+                                                latitude={campus.latitude}
+                                                anchor="bottom"
+                                            >
+                                                <Pin onClick={() => {
+                                                    setPopupInfo(campus)
+                                                    setCampus(campus)
+                                                    handleToggle(campus.id)
+                                                }} />
+                                            </Marker>
+                                            ))
+                                        }
                                         {popupInfo && (
                                             <Popup
                                                 anchor="top"
@@ -132,23 +129,27 @@ const CampusOverview = () => {
                                     </Map> 
                                 </div>
 
-
-                                {/* <div className={'toggler ' + (toggleInfo ? 'hide' : 'show')} onClick={handleToggle}>
-                                    <span>&gt;</span>
-                                </div>
-                                <section className={'infoSidebar ' + (toggleInfo ? 'hide' : 'show')}>
-                                    <div className='infoHeader'>
-                                        <h3>{data.name}</h3>
-                                        <p>Icon: Address comes here</p> 
-                                        <button onClick={handleToggle}>Toggle</button>
-                                    </div>
-                                    <article>
-                                        <h4>Samenwerkingen</h4> 
-                                        <div className='scrollList'>
-                                            <CampusDetailOverview campusId={campusId}/>
+                                {
+                                campus && (
+                                    <>
+                                        <div className={'toggler ' + (toggleInfo ? 'hide' : 'show')} onClick={() => handleToggle()}>
+                                            <span>&gt;</span>
                                         </div>
-                                    </article>
-                                </section> */}
+                                        <section className={'infoSidebar ' + (toggleInfo ? 'hide' : 'show')}>
+                                            <div className='infoHeader'>
+                                                <h3>{campus.name}</h3>
+                                                <p>Icon: Address comes here</p> 
+                                                <button onClick={() => handleToggle()}>Toggle</button>
+                                            </div>
+                                            <article>
+                                                <h4>Samenwerkingen</h4> 
+                                                <div className='scrollList'>
+                                                    <CampusDetailOverview campusId={campus.id}/>
+                                                </div>
+                                            </article>
+                                        </section>
+                                    </>
+                                )}
                                 {/* adres mogelijks gewoon in api opslaan ipv lat long? */}
                             </>
                         }

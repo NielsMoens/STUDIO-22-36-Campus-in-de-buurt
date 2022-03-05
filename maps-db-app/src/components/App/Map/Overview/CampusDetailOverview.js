@@ -15,14 +15,14 @@ import DeleteMovie from '../Delete/DeleteMovie';
 import AddIcon from '../../../Design/AddIcon';
 import LocationCard from '../../../Design/locationCard';
 
-const CampusDetailOverview = () => {
+const CampusDetailOverview = ({campusId: parentCampusId}) => {
     
-    const [campusId, setCampusId] = useState("62114c01fc02d6274eb6ec96");
+    const [campusId, setCampusId] = useState(parentCampusId);
     const [info, setInfo] = useState();
 
     const apiCall = useCallback(() => {
-        return fetchRelatedByCampus(campusId);
-    }, [campusId])
+        return fetchRelatedByCampus(parentCampusId);
+    }, [parentCampusId])
 
     const {
         data:locations,
