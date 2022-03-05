@@ -16,6 +16,9 @@ const RoleSelect = (props) => {
             }, {
                 role: 'admin',
                 label: 'Admin'
+            }, {
+                role: 'superadmin',
+                label: 'Super admin'
             },
         ]
         setRole(roles)
