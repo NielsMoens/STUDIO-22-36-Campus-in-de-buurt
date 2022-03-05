@@ -19,18 +19,22 @@ import Map, {
 } from 'react-map-gl';
 import GeocoderControl from '../../../Design/MapControls';
 
-
-
 import Pin from './pin';
-
-
-
+import { isAdmin } from '../../../../core/modules/auth/utils';
+import Modal from '../../../Shared/Modal';
+import AddButton from '../../../Design/AddButton';
+import CreateOrEditMarker from './Form/CreateOrEditMarker';
 
 const CampusOverview = () => {
     // voor nu gewoon een gehardcode campus id, flexible maken met niels zn map example
     const [campus, setCampus] = useState();   
     const [info, setInfo] = useState();
     const [toggleInfo, setToggleInfo] = useState(false);
+    const [popupInfo, setPopupInfo] = useState(null);
+    
+    const [activeMarker, setActiveMarker] = useState();
+    const [deleteMarker, setDeleteMarker] = useState();
+
 
     const apiCall = useCallback(() => {
         return fetchCampusses();
@@ -52,7 +56,17 @@ const CampusOverview = () => {
         setToggleInfo(!toggleInfo);
     }
 
-    const [popupInfo, setPopupInfo] = useState(null);
+    const admin = useAdmin();
+
+    const handleCreate = () => {
+        setActiveMarker({});
+    }
+
+    const onUpdate = () => {
+        setActiveMarker(null);
+        setDeleteMarker(null);
+        refresh();
+    }
 
     return (
         <>
@@ -86,7 +100,6 @@ const CampusOverview = () => {
                                         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                                     >
                                         <GeolocateControl position="top-left" />
-                                        <FullscreenControl position="top-left" />
                                         <NavigationControl position="top-left" />
                                         <ScaleControl />
                                         {data.map((campus, index) => (
@@ -106,6 +119,7 @@ const CampusOverview = () => {
                                             ))
                                         }
                                         {popupInfo && (
+                                            console.log(popupInfo),
                                             <Popup
                                                 anchor="top"
                                                 longitude={Number(popupInfo.longitude)}
@@ -122,7 +136,7 @@ const CampusOverview = () => {
                                                         Website
                                                     </a>
                                                 </div>
-                                                <img width="100%" src={popupInfo.image} />
+                                                <img width="100%" src={popupInfo.imageLink} />
                                             </Popup>
                                         )}
                                         <GeocoderControl mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} position={"top-left"}/>
@@ -153,7 +167,24 @@ const CampusOverview = () => {
                                 {/* adres mogelijks gewoon in api opslaan ipv lat long? */}
                             </>
                         }
-                        
+
+                        {
+                            admin && (
+                                <>
+                                    <AddButton adder={() => handleCreate()}/>
+
+                                    {
+                                        activeMarker && (
+                                            <CreateOrEditMarker
+                                                marker={activeMarker}
+                                                onUpdate={onUpdate}
+                                                onDismiss={() => setActiveMarker(null)}
+                                            />
+                                        )
+                                    }
+                                </>
+                            )
+                        }
                         
                     </>
                 )

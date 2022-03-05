@@ -18,13 +18,24 @@ const fetchRelatedByCampus = (campusId) => (headers) => {
     });
 }
 
-// const createLikedMovie = (data) => (headers) => {
-//     return fetch(`${process.env.REACT_APP_BASE_API}/likedMovies`, {
-//         method:'POST',
-//         headers: createHeaders(headers),
-//         body: JSON.stringify(data),
-//     });
-// }
+const createMarker = (data) => (headers) => {
+    console.log("we zitten hier");
+    console.log(data);
+    return fetch(`${process.env.REACT_APP_BASE_API}/markers`, {
+        method:'POST',
+        headers: createHeaders(headers),
+        body: JSON.stringify(data),
+    });
+}
+
+const updateMarker = (data) => (headers) => {
+    // const {_id} = data;
+    // return fetch(`${process.env.REACT_APP_BASE_API}/movies/${_id}`, {
+    //     method:'PATCH',
+    //     headers: createHeaders(headers),
+    //     body: JSON.stringify(data),
+    // });
+}
 
 // const deleteLikedMovieByMovieId = async (movieId, user) => {
 //     return fetch(`${process.env.REACT_APP_BASE_API}/likedMovies/${movieId}`, {
@@ -38,5 +49,7 @@ const fetchRelatedByCampus = (campusId) => (headers) => {
 export {
     fetchCampusses,
     fetchCampusById,
-    fetchRelatedByCampus
+    fetchRelatedByCampus,
+    createMarker,
+    updateMarker
 }
