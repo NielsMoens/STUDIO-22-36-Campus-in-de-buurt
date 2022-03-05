@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import isAdmin from '../../../core/modules/auth/utils';
+import {isAdmin} from '../../../core/modules/auth/utils';
 import { Routes } from '../../../core/routing';
 import { useAuth } from '../../Auth/AuthContainer';
 import AdminRoute from '../../Shared/Route/AdminRoute';

@@ -1,4 +1,4 @@
-import isAdmin from "../../../core/modules/auth/utils";
+import {isAdmin} from "../../../core/modules/auth/utils";
 import { useAuth } from "../../Auth/AuthContainer";
 
 const AdminContainer = ({children}) => {

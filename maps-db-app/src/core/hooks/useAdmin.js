@@ -1,5 +1,5 @@
 import { useAuth } from "../../components/Auth/AuthContainer";
-import isAdmin from "../modules/auth/utils";
+import {isAdmin} from "../modules/auth/utils";
 
 const useAdmin = () => {
     const {user} = useAuth();
