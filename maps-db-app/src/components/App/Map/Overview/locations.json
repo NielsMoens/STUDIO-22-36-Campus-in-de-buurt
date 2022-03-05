@@ -1,0 +1,15 @@
+[
+  {"campus":"campus-kantienberg","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/campus_kantienberg_0.jpg","latitude":51.040970,"longitude":3.728000},
+  {"campus":"campus-stropkaai","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/stropkaai.jpg","latitude":51.037360,"longitude":3.729910},
+  {"campus":"campus-watersportbaan","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/watersportbaan_sportcampus_artevelde.jpg","latitude":51.048440,"longitude":3.702720},
+  {"campus":"campus-tinelstraat","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/tinelgroenoriginal_0.jpg","latitude":51.073420,"longitude":3.768990},
+  {"campus":"campus-sint-annaplein","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/sap.jpg","latitude":51.05010012824171,"longitude":3.7356264138079376},
+  {"campus":"campus-sint-amandsberg","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/sab_mediatheek2.jpg","latitude":51.062883422189834,"longitude":3.747709153409383},
+  {"campus":"campus-oudenaarde","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/microsoftteams-image_26.png","latitude":50.85998573493312,"longitude":3.5852356772724927},
+  {"campus":"campus-mariakerke","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/gevelfront.jpg","latitude":51.08877167919532,"longitude": 3.6695833068187667},
+  {"campus":"campus-leeuwstraat","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/campus_leeuwstraat.jpg","latitude":51.04368573252319,"longitude":3.7314505079543694},
+  {"campus":"campus-Kattenberg","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/campus_leeuwstraat.jpg","latitude":51.043518840053366,"longitude": 3.7243496613637532},
+  {"campus":"campus-hoogpoort","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/campus_leeuwstraat.jpg","latitude":51.056480121005805,"longitude": 3.723051677272493},
+  {"campus":"campus-goudstraat","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/campus_leeuwstraat.jpg","latitude":51.06136952547832,"longitude":3.7286488147731363},
+  {"campus":"campus-brusselsepoortstraat","image":"https://www.arteveldehogeschool.be/sites/default/files/styles/hero_portrait/public/general/campus_brusselsepoortstraat.jpg","latitude":51.044115232510244,"longitude": 3.7388259840912603}
+]

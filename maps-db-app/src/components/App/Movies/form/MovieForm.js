@@ -34,31 +34,31 @@ const MovieForm = ({file, setFile, onSubmit, initialData={}, disabled}) => {
 
     const handleChange = (e) => {
         
-        if(e.target.localName === 'select') {
-            // insanely dumb workaround to actually show the visually update 
-            // because: virtual fields only updates when fetched again
-            const text = e.target.[e.target.options.selectedIndex].innerHTML;
-            const res = text.split(" ");
-            const firstName = res.splice(0, Math.ceil(res.length / 2));
-            const lastName = res.splice((Math.ceil(res.length / 2)) - 1, res.length);
-            setData({
-                ...data,
-                director: {
-                    _id: e.target.value,
-                    firstName: firstName[0],
-                    lastName: lastName[0]
-                },
-                directorId: e.target.value,
-            })
-        } else {
-            if(e.target.name === 'coverLink') {
-                setFile(e.target.files[0]);
-            }
-            setData({
-               ...data,
-               [e.target.name]: e.target.value
-            })
-        }
+        // if(e.target.localName === 'select') {
+        //     // insanely dumb workaround to actually show the visually update 
+        //     // because: virtual fields only updates when fetched again
+        //     const text = e.target.[e.target.options.selectedIndex].innerHTML;
+        //     const res = text.split(" ");
+        //     const firstName = res.splice(0, Math.ceil(res.length / 2));
+        //     const lastName = res.splice((Math.ceil(res.length / 2)) - 1, res.length);
+        //     setData({
+        //         ...data,
+        //         director: {
+        //             _id: e.target.value,
+        //             firstName: firstName[0],
+        //             lastName: lastName[0]
+        //         },
+        //         directorId: e.target.value,
+        //     })
+        // } else {
+        //     if(e.target.name === 'coverLink') {
+        //         setFile(e.target.files[0]);
+        //     }
+        //     setData({
+        //        ...data,
+        //        [e.target.name]: e.target.value
+        //     })
+        // }
     }
 
     const validate = useCallback((data, onSuccess) => {

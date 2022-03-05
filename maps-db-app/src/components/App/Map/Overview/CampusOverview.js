@@ -6,15 +6,26 @@ import Alert from '../../../Design/Alert';
 // import Button from '../../../Design/Button';
 import { fetchCampusById } from '../../../../core/modules/map/api';
 import useAdmin from '../../../../core/hooks/useAdmin';
-import MovieCard from '../../../Design/MovieCard';
-import SearchForm from './Form/SearchForm';
-import Result from './Form/Result';
-import { useCallback, useState } from 'react';
-import Pagination from '../../../Design/Pagination';
-import DeleteMovie from '../Delete/DeleteMovie';
+import { useCallback, useState, useMemo } from 'react';
 import AddIcon from '../../../Design/AddIcon';
 import CampusDetailOverview from './CampusDetailOverview';
-import DeleteButton from '../../../Design/DeleteButton';
+import Map, {
+    Marker,
+    Popup,
+    NavigationControl,
+    FullscreenControl,
+    ScaleControl,
+    GeolocateControl
+} from 'react-map-gl';
+import GeocoderControl from '../../../Design/MapControls';
+
+
+
+
+import CAMPUS from './locations.json';
+import Pin from './pin';
+
+
 
 
 const CampusOverview = () => {
@@ -39,6 +50,22 @@ const CampusOverview = () => {
         setToggleInfo(!toggleInfo);
     }
 
+    const [popupInfo, setPopupInfo] = useState(null);
+    const pins = useMemo(
+        () =>
+            CAMPUS.map((city, index) => (
+                <Marker
+                    key={`marker-${index}`}
+                    longitude={city.longitude}
+                    latitude={city.latitude}
+                    anchor="bottom"
+                >
+                    <Pin onClick={() => setPopupInfo(city)} />
+                </Marker>
+            )),
+        []
+    );
+
     return (
         <>
             {
@@ -59,14 +86,60 @@ const CampusOverview = () => {
 
                         {
                             <>
-                                <div className={'toggler ' + (toggleInfo ? 'hide' : 'show')} onClick={handleToggle}>
+
+                                {/* Hier komt da mapke */}
+
+                                <div id="map" className={toggleInfo ? 'hide' : 'show'}>
+                                    <Map
+                                        initialViewState={{
+                                            latitude: 51.054340,
+                                            longitude: -3.717424,
+                                            zoom: 3.5,
+                                            bearing: 0,
+                                            pitch: 1
+                                        }}
+                                        mapStyle="mapbox://styles/mapbox/streets-v10"
+                                        mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                                    >
+                                        <GeolocateControl position="top-left" />
+                                        <FullscreenControl position="top-left" />
+                                        <NavigationControl position="top-left" />
+                                        <ScaleControl />
+
+                                        {pins}
+
+                                        {popupInfo && (
+                                            <Popup
+                                                anchor="top"
+                                                longitude={Number(popupInfo.longitude)}
+                                                latitude={Number(popupInfo.latitude)}
+                                                closeOnClick={false}
+                                                onClose={() => setPopupInfo(null)}
+                                            >
+                                                <div>
+                                                    {popupInfo.campus}, |{' '}
+                                                    <a
+                                                        target="_new"
+                                                        href={`https://www.arteveldehogeschool.be/bij-ons-studeren/onze-locaties/${popupInfo.campus}`}
+                                                    >
+                                                        Website
+                                                    </a>
+                                                </div>
+                                                <img width="100%" src={popupInfo.image} />
+                                            </Popup>
+                                        )}
+                                        <GeocoderControl mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} position={"top-left"}/>
+                                    </Map> 
+                                </div>
+
+
+                                {/* <div className={'toggler ' + (toggleInfo ? 'hide' : 'show')} onClick={handleToggle}>
                                     <span>&gt;</span>
                                 </div>
                                 <section className={'infoSidebar ' + (toggleInfo ? 'hide' : 'show')}>
                                     <div className='infoHeader'>
                                         <h3>{data.name}</h3>
                                         <p>Icon: Address comes here</p> 
-                                        {/* adres mogelijks gewoon in api opslaan ipv lat long? */}
                                         <button onClick={handleToggle}>Toggle</button>
                                     </div>
                                     <article>
@@ -75,7 +148,8 @@ const CampusOverview = () => {
                                             <CampusDetailOverview campusId={campusId}/>
                                         </div>
                                     </article>
-                                </section>
+                                </section> */}
+                                {/* adres mogelijks gewoon in api opslaan ipv lat long? */}
                             </>
                         }
                         

@@ -14,6 +14,11 @@
     overflow: hidden;
 }
 
+#map{
+    width: 100vw;
+    height: 100vh;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -102,6 +107,20 @@ p{
         }
     }
 }
+
+
+map{
+    width: 100%;
+    height: 100%;
+    z-index:0;
+    position: absolute;
+}
+// map.show{
+//     width: calc(100% - 616px);
+// }
+// map.hide{
+//     width: calc(100% - 16px);
+// }
 
 .infoSidebar {
     display: flex;
