@@ -6,6 +6,10 @@ const markerSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    imageLink: {
+        type: String,
+        required: false,
+    },
     latitude: {
         type: Number,
         required: true,
