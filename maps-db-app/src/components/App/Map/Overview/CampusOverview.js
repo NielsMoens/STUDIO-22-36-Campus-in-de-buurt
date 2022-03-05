@@ -13,7 +13,6 @@ import { useCallback, useState } from 'react';
 import Pagination from '../../../Design/Pagination';
 import DeleteMovie from '../Delete/DeleteMovie';
 import AddIcon from '../../../Design/AddIcon';
-import LocationCard from '../../../Design/locationCard';
 import CampusDetailOverview from './CampusDetailOverview';
 import DeleteButton from '../../../Design/DeleteButton';
 
@@ -37,7 +36,6 @@ const CampusOverview = () => {
     } = useFetch(apiCall);
 
     const handleToggle = () => {
-        console.log(toggleInfo);
         setToggleInfo(!toggleInfo);
     }
 

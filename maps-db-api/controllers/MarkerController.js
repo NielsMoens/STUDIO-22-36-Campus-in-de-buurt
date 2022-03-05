@@ -96,7 +96,6 @@ class MarkerController {
             const marker = await Marker.findById(id).exec();
             if(marker) {
                 req = isSuper(req);
-                // update
                 marker.overwrite(req.body);
                 const result = await marker.save();
                 res.status(200).json(result);
