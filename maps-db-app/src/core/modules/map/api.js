@@ -1,6 +1,6 @@
 import { createHeaders } from "../../utils/api";
 
-const fetchCampuses = () => (headers) => {
+const fetchCampusses = () => (headers) => {
     return fetch(`${process.env.REACT_APP_BASE_API}/markers`, {
         headers: createHeaders(headers),
     });
@@ -36,7 +36,7 @@ const fetchRelatedByCampus = (campusId) => (headers) => {
 // }
 
 export {
-    fetchCampuses,
+    fetchCampusses,
     fetchCampusById,
     fetchRelatedByCampus
 }
