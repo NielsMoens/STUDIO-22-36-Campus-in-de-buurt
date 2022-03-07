@@ -3,7 +3,7 @@ import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
 import { fetchUsers } from '../../../../core/modules/users/api';
 import useAdmin from '../../../../core/hooks/useAdmin';
-import SearchForm from '../../Movies/Overview/Form/SearchForm';
+import SearchForm from './Form/SearchForm';
 import Result from './Form/Result';
 import { useCallback, useState } from 'react';
 import Pagination from '../../../Design/Pagination';

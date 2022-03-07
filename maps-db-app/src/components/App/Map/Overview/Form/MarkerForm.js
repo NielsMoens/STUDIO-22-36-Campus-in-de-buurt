@@ -4,13 +4,14 @@ import Button from "../../../../Design/Button";
 import Input from "../../../../Design/Input";
 import * as yup from 'yup';
 // import RoleSelect from "../Select/RoleSelect";
-import AdminContainer from "../../../../Shared/Admin/AdminContainer";
+import useSuperAdmin from "../../../../../core/hooks/useSuperAdmin";
 
 const schema = yup.object().shape({
     name: yup.string().required(),
     imageLink: yup.string().url().required(),
     latitude: yup.number().required().min(-90).max(90),
     longitude: yup.number().required().min(-180).max(180),
+    publish: yup.boolean().nullable(),
 });
 
 const defaultData = {
@@ -18,10 +19,10 @@ const defaultData = {
     imageLink: '',
     latitude: '',
     longitude: '',
+    published: false,
 }
 
 const MarkerForm = ({onSubmit, initialData={}, disabled, isNew}) => {
-
     const [isTouched, setIsTouched] = useState(false);
     const [data, setData] = useState({
         ...defaultData,
@@ -29,11 +30,18 @@ const MarkerForm = ({onSubmit, initialData={}, disabled, isNew}) => {
     });
     
     const [errors, setErrors] = useState({});
+    let publish = defaultData.publish;
 
     const handleChange = (e) => {
+        if(e.target.value === 'radio1') {
+            publish = true;
+        } else if(e.target.value === 'radio2'){
+            publish = false;  
+        }
         setData({
             ...data,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            'published': publish
         })
     }
 
@@ -61,6 +69,9 @@ const MarkerForm = ({onSubmit, initialData={}, disabled, isNew}) => {
         validate(data, () => onSubmit(data))
     }
 
+    const superAdmin = useSuperAdmin();
+
+    const publishInput = document.getElementById('publish');
 
     return (
         
@@ -106,18 +117,16 @@ const MarkerForm = ({onSubmit, initialData={}, disabled, isNew}) => {
                 error={errors.longitude}
             />
 
-            
-
-            {/* <AdminContainer>
-                <RoleSelect
-                    label="Role"
-                    name="role"
-                    value={data.role}
-                    disabled={disabled}
-                    onChange={handleChange}
-                    error={errors.role}
-                />
-            </AdminContainer> */}
+            {
+                superAdmin && (
+                    <>
+                        <input type="radio" id="publish" name="published" value="radio1" onChange={handleChange}/>
+                        <label htmlFor="publish">Publish</label><br/>
+                        <input type="radio" id="dontpublish" name="published" value="radio2" onChange={handleChange} defaultChecked />
+                        <label htmlFor="dontpublish">Don't publish</label><br/>
+                    </>
+                )
+            }
 
             <Button className='mt-4' type="submit" disabled={disabled}>
                 {data._id ? 'Update' : 'Create'}

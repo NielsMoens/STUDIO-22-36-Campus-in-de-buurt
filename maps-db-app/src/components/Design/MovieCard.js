@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { route, Routes } from "../../core/routing";
 import {format} from 'date-fns';
-import Like from "../App/Movies/Like/Like";
+// import Like from "../App/Movies/Like/Like";
 import AdminContainer from "../Shared/Admin/AdminContainer";
 import DeleteButton from "./DeleteButton";
 
@@ -9,11 +9,11 @@ const MovieCard = ({movie, onUpdate, deleter}) => {
 
     return (
         <div className='movieCard mt-4 mb-4'>
-            <Like 
+            {/* <Like 
                 onUpdate={onUpdate} 
                 movieId={movie._id}
                 movie={movie}
-            />
+            /> */}
             <AdminContainer>
                 <DeleteButton deleter={() => deleter(movie)}/>
             </AdminContainer>

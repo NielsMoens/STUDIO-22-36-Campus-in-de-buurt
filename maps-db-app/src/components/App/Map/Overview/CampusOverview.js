@@ -22,8 +22,9 @@ import GeocoderControl from '../../../Design/MapControls';
 import Pin from './pin';
 import { isAdmin } from '../../../../core/modules/auth/utils';
 import Modal from '../../../Shared/Modal';
-import AddButton from '../../../Design/AddButton';
 import CreateOrEditMarker from './Form/CreateOrEditMarker';
+import AddButton from '../../../Design/AddButton';
+import EditButton from '../../../Design/EditButton';
 
 const CampusOverview = () => {
     // voor nu gewoon een gehardcode campus id, flexible maken met niels zn map example
@@ -118,53 +119,78 @@ const CampusOverview = () => {
                                             </Marker>
                                             ))
                                         }
-                                        {popupInfo && (
-                                            console.log(popupInfo),
-                                            <Popup
-                                                anchor="top"
-                                                longitude={Number(popupInfo.longitude)}
-                                                latitude={Number(popupInfo.latitude)}
-                                                closeOnClick={false}
-                                                onClose={() => setPopupInfo(null)}
-                                            >
-                                                <div>
-                                                    {popupInfo.campus}, |{' '}
-                                                    <a
-                                                        target="_new"
-                                                        href={`https://www.arteveldehogeschool.be/bij-ons-studeren/onze-locaties/${popupInfo.campus}`}
-                                                    >
-                                                        Website
-                                                    </a>
-                                                </div>
-                                                <img width="100%" src={popupInfo.imageLink} />
-                                            </Popup>
-                                        )}
+                                        
+                                        {
+                                            popupInfo && (
+                                                <Popup
+                                                    anchor="top"
+                                                    longitude={Number(popupInfo.longitude)}
+                                                    latitude={Number(popupInfo.latitude)}
+                                                    closeOnClick={false}
+                                                    onClose={() => setPopupInfo(null)}
+                                                >
+                                                    <div>
+                                                        {popupInfo.campus}, |{' '}
+                                                        <a
+                                                            target="_new"
+                                                            href={`https://www.arteveldehogeschool.be/bij-ons-studeren/onze-locaties/${popupInfo.campus}`}
+                                                        >
+                                                            Website
+                                                        </a>
+                                                    </div>
+                                                    <img width="100%" src={popupInfo.imageLink} />
+                                                </Popup>
+                                            )
+                                        }
+
                                         <GeocoderControl mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} position={"top-left"}/>
                                     </Map> 
                                 </div>
 
                                 {
-                                campus && (
-                                    <>
-                                        <div className={'toggler ' + (toggleInfo ? 'hide' : 'show')} onClick={() => handleToggle()}>
-                                            <span>&gt;</span>
-                                        </div>
-                                        <section className={'infoSidebar ' + (toggleInfo ? 'hide' : 'show')}>
-                                            <div className='infoHeader'>
-                                                <h3>{campus.name}</h3>
-                                                <p>Icon: Address comes here</p> 
-                                                <button onClick={() => handleToggle()}>Toggle</button>
+                                    campus && (
+                                        <>
+                                            <div className={'toggler ' + (toggleInfo ? 'hide' : 'show')} onClick={() => handleToggle()}>
+                                                <span>&gt;</span>
                                             </div>
-                                            <article>
-                                                <h4>Samenwerkingen</h4> 
-                                                <div className='scrollList'>
-                                                    <CampusDetailOverview campusId={campus.id}/>
+                                            <section className={'infoSidebar ' + (toggleInfo ? 'hide' : 'show')}>
+                                                <div className='infoHeader'>
+                                                    <h3>{campus.name}</h3>
+                                                    <p>Icon: Address comes here</p> 
+                                                    <button onClick={() => handleToggle()}>Toggle</button>
                                                 </div>
-                                            </article>
-                                        </section>
-                                    </>
-                                )}
-                                {/* adres mogelijks gewoon in api opslaan ipv lat long? */}
+
+                                                {
+                                                    admin && (
+                                                        <>
+
+                                                            {
+                                                                activeMarker && (
+                                                                    <>
+                                                                    <EditButton adder={() => handleCreate()}/>
+                                                                    <CreateOrEditMarker
+                                                                        marker={activeMarker}
+                                                                        onUpdate={onUpdate}
+                                                                        onDismiss={() => setActiveMarker(null)}
+                                                                    />
+                                                                    </>
+                                                                )
+                                                            }
+                                                        </>
+                                                    )
+                                                }
+
+                                                <article>
+                                                    <h4>Samenwerkingen</h4> 
+                                                    <div className='scrollList'>
+                                                        <CampusDetailOverview campusId={campus.id}/>
+                                                    </div>
+                                                </article>
+                                            </section>
+                                        </>
+                                    )
+                                }
+
                             </>
                         }
 

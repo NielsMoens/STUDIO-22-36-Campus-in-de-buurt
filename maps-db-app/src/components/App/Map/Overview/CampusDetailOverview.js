@@ -1,18 +1,11 @@
-import { Link } from 'react-router-dom';
-import { Routes } from '../../../../core/routing';
+
 import useFetch from '../../../../core/hooks/useFetch';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
 // import Button from '../../../Design/Button';
 import { fetchRelatedByCampus } from '../../../../core/modules/map/api';
 import useAdmin from '../../../../core/hooks/useAdmin';
-import MovieCard from '../../../Design/MovieCard';
-import SearchForm from './Form/SearchForm';
-import Result from './Form/Result';
 import { useCallback, useState } from 'react';
-import Pagination from '../../../Design/Pagination';
-import DeleteMovie from '../Delete/DeleteMovie';
-import AddIcon from '../../../Design/AddIcon';
 import LocationCard from '../../../Design/locationCard';
 
 const CampusDetailOverview = ({campusId: parentCampusId}) => {

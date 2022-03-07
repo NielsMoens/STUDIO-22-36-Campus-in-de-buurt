@@ -3,24 +3,23 @@ const Routes = Object.freeze({
     splash: '/splash',
     Login: '/login',
 
-    LikedMovies: '/likedMovies',
+    // LikedMovies: '/likedMovies',
     
     Users: '/users',
     UsersEdit: '/users/edit',
 
-    Movies: '/movies',
-    MoviesDetail: '/movies/:id',
-    MoviesCreate: '/movies/create',
-    MoviesEdit: '/movies/:id/edit',
-    MoviesCreateReview: '/movies/:id/review',
+    // Movies: '/movies',
+    // MoviesDetail: '/movies/:id',
+    // MoviesCreate: '/movies/create',
+    // MoviesEdit: '/movies/:id/edit',
+    // MoviesCreateReview: '/movies/:id/review',
 
     Map: '/map',
-    MapDetail: '/map/:id',
 
-    Directors: '/directors',
-    DirectorsDetail: '/directors/:id',
-    DirectorsCreate: '/directors/create',
-    DirectorsEdit: '/directors/:id/edit',
+    // Directors: '/directors',
+    // DirectorsDetail: '/directors/:id',
+    // DirectorsCreate: '/directors/create',
+    // DirectorsEdit: '/directors/:id/edit',
 });
 
 // replaces : values with values from object
