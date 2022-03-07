@@ -40,6 +40,10 @@ p{
     font-family: $text-font;
 }
 
+.mapboxgl-popup-close-button{
+    color: black;
+}
+
 .formContainer {
     padding: 32px 24px;
     margin: auto;
@@ -173,6 +177,10 @@ p{
     }
 }
 
+.edit {
+    position: unset;
+    top: 0;
+}
 // END NEW CSS
 // ----------------
 
