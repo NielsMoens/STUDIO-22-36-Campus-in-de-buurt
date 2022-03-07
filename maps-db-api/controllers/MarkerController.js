@@ -16,8 +16,6 @@ class MarkerController {
 
     getMarkerById = async(req, res, next) => {
         try {
-
-            console.log(req.params);
             const {id} = req.params;
             const marker = await Marker.findById(id).exec();
             if(marker) {

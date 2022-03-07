@@ -10,7 +10,6 @@ class RelatedMarkerController {
             const related = await RelatedMarkers
                 .find({markerId: id})
                 .exec();
-            console.log(related)
             if(related) {
                 res.status(200).json(related);
             } else {
