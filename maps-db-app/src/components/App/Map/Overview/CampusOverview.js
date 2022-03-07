@@ -27,7 +27,8 @@ import AddButton from '../../../Design/AddButton';
 import EditButton from '../../../Design/EditButton';
 
 const CampusOverview = () => {
-    // voor nu gewoon een gehardcode campus id, flexible maken met niels zn map example
+
+    
     const [campus, setCampus] = useState();   
     const [info, setInfo] = useState();
     const [toggleInfo, setToggleInfo] = useState(false);
@@ -161,23 +162,7 @@ const CampusOverview = () => {
                                                 </div>
 
                                                 {
-                                                    admin && (
-                                                        <>
-
-                                                            {
-                                                                activeMarker && (
-                                                                    <>
-                                                                    <EditButton adder={() => handleCreate()}/>
-                                                                    <CreateOrEditMarker
-                                                                        marker={activeMarker}
-                                                                        onUpdate={onUpdate}
-                                                                        onDismiss={() => setActiveMarker(null)}
-                                                                    />
-                                                                    </>
-                                                                )
-                                                            }
-                                                        </>
-                                                    )
+                                                    admin && <EditButton editor={() => setActiveMarker(campus)}/>      
                                                 }
 
                                                 <article>

@@ -20,14 +20,14 @@ const CreateOrEditUser = ({user, onUpdate, onDismiss }) => {
                 ? createUser(data)
                 : updateUser(data)
         )
-            .then((data) => {
-                // let parent know data is updated
-                onUpdate(data);
-            })
-            .catch((err) => {
-                setError(err);
-                setIsLoading(false);
-            });
+        .then((data) => {
+            // let parent know data is updated
+            onUpdate(data);
+        })
+        .catch((err) => {
+            setError(err);
+            setIsLoading(false);
+        });
     };
 
     return (

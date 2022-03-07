@@ -19,7 +19,6 @@ const fetchRelatedByCampus = (campusId) => (headers) => {
 }
 
 const createMarker = (data) => (headers) => {
-    console.log("we zitten hier");
     console.log(data);
     return fetch(`${process.env.REACT_APP_BASE_API}/markers`, {
         method:'POST',
@@ -29,12 +28,12 @@ const createMarker = (data) => (headers) => {
 }
 
 const updateMarker = (data) => (headers) => {
-    // const {_id} = data;
-    // return fetch(`${process.env.REACT_APP_BASE_API}/movies/${_id}`, {
-    //     method:'PATCH',
-    //     headers: createHeaders(headers),
-    //     body: JSON.stringify(data),
-    // });
+    const {_id} = data;
+    return fetch(`${process.env.REACT_APP_BASE_API}/markers/${_id}`, {
+        method:'PATCH',
+        headers: createHeaders(headers),
+        body: JSON.stringify(data),
+    });
 }
 
 // const deleteLikedMovieByMovieId = async (movieId, user) => {
