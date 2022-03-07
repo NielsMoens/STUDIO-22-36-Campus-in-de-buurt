@@ -2,7 +2,7 @@ import roles from "./constants"
 
 
 const isAdmin = (user) => {
-    return user.role === roles.admin || roles.superadmin
+    return user.role === roles.admin || user.role === roles.superadmin
 }
 
 const isSuperAdmin = (user) => {
