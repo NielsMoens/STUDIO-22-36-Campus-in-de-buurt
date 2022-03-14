@@ -5,6 +5,7 @@ import Input from "../../../../Design/Input";
 import * as yup from 'yup';
 // import RoleSelect from "../Select/RoleSelect";
 import useSuperAdmin from "../../../../../core/hooks/useSuperAdmin";
+import CampusSelect from "../../../Users/Select/CampusSelect";
 
 const schema = yup.object().shape({
     name: yup.string().required(),
@@ -15,15 +16,19 @@ const schema = yup.object().shape({
 });
 
 const defaultData = {
+    type: 'campus',
     name: '',
     imageLink: '',
     latitude: '',
     longitude: '',
     published: false,
+    campus: ''
 }
 
 const MarkerForm = ({onSubmit, initialData={}, disabled, isNew}) => {
     const [isTouched, setIsTouched] = useState(false);
+    const [typeMarker, setTypeMarker] = useState(false);
+
     const [data, setData] = useState({
         ...defaultData,
         ...initialData,
@@ -38,6 +43,13 @@ const MarkerForm = ({onSubmit, initialData={}, disabled, isNew}) => {
         } else if(e.target.value === 'radio2'){
             publish = false;  
         }
+        if(e.target.name === 'type') {
+            if(e.target.value !== 'campus') {
+                setTypeMarker(true)
+            } else {
+                setTypeMarker(false)
+            }
+        } 
         setData({
             ...data,
             [e.target.name]: e.target.value,
@@ -71,11 +83,21 @@ const MarkerForm = ({onSubmit, initialData={}, disabled, isNew}) => {
 
     const superAdmin = useSuperAdmin();
 
-    const publishInput = document.getElementById('publish');
-
     return (
         
         <form noValidate={true} onSubmit={handleSubmit}>
+            
+            <input type="radio" id="type1" name="type" value="campus" onChange={handleChange} defaultChecked/>
+            <label htmlFor="type1">Campus</label><br/>
+            
+            <input type="radio" id="type2" name="type" value="company" onChange={handleChange}/>
+            <label htmlFor="type2">Company</label><br/>
+            
+            <input type="radio" id="type3" name="type" value="organisation" onChange={handleChange} />
+            <label htmlFor="type3">Organisation</label><br/>
+            
+            <input type="radio" id="type4" name="type" value="other" onChange={handleChange} />
+            <label htmlFor="type4">Other</label><br/><br/>
 
             <Input
                 label="Name"
@@ -118,8 +140,22 @@ const MarkerForm = ({onSubmit, initialData={}, disabled, isNew}) => {
             />
 
             {
+                typeMarker && (
+                    <CampusSelect
+                        label="campus"
+                        name="campus"
+                        value={data.campus}
+                        disabled={disabled}
+                        onChange={handleChange}
+                        error={errors.role}
+                    />
+                )
+            }
+
+            {
                 superAdmin && (
                     <>
+                        <br/>
                         <input type="radio" id="publish" name="published" value="radio1" onChange={handleChange}/>
                         <label htmlFor="publish">Publish</label><br/>
                         <input type="radio" id="dontpublish" name="published" value="radio2" onChange={handleChange} defaultChecked />
