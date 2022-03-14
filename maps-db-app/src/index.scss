@@ -97,6 +97,9 @@ p{
 }
 
 .toggler {
+    &.fullscreen {
+        height: 100vh;
+    }
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -136,11 +139,19 @@ p{
     background-color: $white;
     transition-property: width, flex-grow, padding-left, padding-right;
     transition: $transition-time;
+    &.fullscreen {
+        max-height: 100vh;
+    }
     h3, h4, h5 {
         color: $text ;
     }
     .infoheader {
         position: sticky;
+        .edit {
+            position: absolute !important;
+            z-index: 50;
+            bottom: 6rem;
+        }
     }
     article{
         overflow-y: scroll;
@@ -177,10 +188,18 @@ p{
     }
 }
 
-.edit {
-    position: unset;
-    top: 0;
+select *{
+    all: unset;
 }
+::selection, ::-moz-selection{
+    color: black;
+}
+
+#map.fullscreen {
+    height: 100vh;
+    width: 100vw;
+}
+
 // END NEW CSS
 // ----------------
 
@@ -248,6 +267,10 @@ table{
     svg{
         transform: scale(1.7);
     }
+}
+
+.edit {
+    bottom: 6rem;
 }
 
 .movieList {
