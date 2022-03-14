@@ -14,7 +14,7 @@ const SplashPage = ({ setUser }) => {
                             Veniam reprehenderit commodo velit tempor consectetur culpa Lorem amet reprehenderit cupidatat sint. In reprehenderit sint occaecat nisi amet est exercitation do. Nostrud aliqua id labore do laboris ea fugiat.
                         </p>
                         <div className='btnContainer'>
-                            <Link to="/login"><Button color="primary" className="center bigBtn">Get started</Button></Link>
+                            <Link to="/map"><Button color="primary" className="center bigBtn">Get started</Button></Link>
                         </div>
                         <p className='text-center'><Link className="formSmall" to="/login">Login as docent</Link></p>
                     </div>

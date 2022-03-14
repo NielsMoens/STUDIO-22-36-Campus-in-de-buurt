@@ -5,6 +5,8 @@ import { Routes } from "../../core/routing";
 import SplashPage from "../OnBoarding/Login/splash";
 import LoginPage from "../OnBoarding/Login/LoginPage";
 import storage from "../../core/storage";
+import Map from '../App/Map/Map';
+
 
 const AuthContext = createContext();
 
@@ -40,6 +42,9 @@ const AuthContainer = () => {
             </Route>
             <Route path={Routes.Login}>
                 <LoginPage setUser={updateUser}/>
+            </Route>
+            <Route path={Routes.Map}>
+                <Map setUser={updateUser}/>
             </Route>
             <Redirect to={Routes.splash} />
         </Switch>
