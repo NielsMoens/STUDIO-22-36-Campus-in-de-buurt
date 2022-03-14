@@ -1,10 +1,23 @@
 const mongoose = require('mongoose');
 
+const types = {
+    campus: "campus",
+    organisation: "organisation",
+    company: "company",
+    other: "other",
+}
+
 // schema
 const markerSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+    },
+    type: {
+        type: String,
+        required: true,
+        enum: [types.campus, types.organisation, types.company, types.other],
+        default: types.campus,
     },
     imageLink: {
         type: String,

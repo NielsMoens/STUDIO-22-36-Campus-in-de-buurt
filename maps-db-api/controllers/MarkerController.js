@@ -5,9 +5,9 @@ const isSuper = require('../utils/authorization');
 
 class MarkerController {
         
-    getMarkers = async(req, res, next) => {
+    getCampusses = async(req, res, next) => {
         try {
-            const markers = await Marker.find({published: true}).exec();
+            const markers = await Marker.find({published: true, type: "campus"}).exec();
             res.status(200).json(markers);
         } catch (e) {
             next(e);

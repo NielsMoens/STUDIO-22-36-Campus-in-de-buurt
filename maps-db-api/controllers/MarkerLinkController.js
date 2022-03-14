@@ -1,30 +1,28 @@
 const NotFoundError = require('../errors/NotFoundError');
 const ValidationError = require('../errors/ValidationError');
-const { MarkerLink } = require('../models/MarkerLink');
 const { RelatedMarkers } = require('../models/RelatedMarkers');
 const { Marker } = require('../models/Marker');
+const { MarkerLink } = require('../models/MarkerLink');
+const isSuper = require('../utils/authorization');
 
-class RelatedMarkerController {
-        
-    getRelatedByMarkerId = async(req, res, next) => {
+
+class MarkerLinkController {
+    
+    createMarkerLink = async(req, res, next) => {
+        console.log('we here')
         try {
-            const {id} = req.params;
-            console.log({id})
-            const related = await MarkerLink
-                .find({campusId: id})
-                .lean()
-                .populate('organisation')
-                .exec();
-            if(related) {
-                res.status(200).json(related);
-            } else {
-                next(new NotFoundError());
-            }
+            req = isSuper(req);
+
+            const markerLink = new MarkerLink({
+                ...req.body,
+            });
+            const result = await markerLink.save();
+            res.status(200).json(result);
         } catch (e) {
             next(e);
         }
     }
-    
+
     // getReviewsPaginated = async(req, res, next) => {
     //     try {
     //         const {id, page, perPage} = req.params;
@@ -40,20 +38,6 @@ class RelatedMarkerController {
     //         next(e);
     //     }
     // }
-
-    createRelatedByMarkerId = async (req, res, next) => {
-        try {
-            const {id} = req.params;
-            const related = new RelatedMarkers({
-                ...req.body,
-                markerId: id,
-            });
-            const c = await related.save();
-            res.status(200).json(c);
-        } catch (e) {
-            next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
-        }
-    }
 
     // deleteReviewById = async(req,res,next) => {
     //     try {
@@ -72,4 +56,4 @@ class RelatedMarkerController {
     
 }
 
-module.exports = RelatedMarkerController;
+module.exports = MarkerLinkController;
