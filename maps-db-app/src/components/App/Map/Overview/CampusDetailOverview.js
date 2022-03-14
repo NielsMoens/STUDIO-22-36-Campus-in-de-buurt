@@ -7,8 +7,9 @@ import { fetchRelatedByCampus } from '../../../../core/modules/map/api';
 import useAdmin from '../../../../core/hooks/useAdmin';
 import { useCallback, useState } from 'react';
 import LocationCard from '../../../Design/locationCard';
+import useFetchNoAuth from '../../../../core/hooks/useFetchNoAuth';
 
-const CampusDetailOverview = ({campusId: parentCampusId}) => {
+const CampusDetailOverview = ({campusId: parentCampusId},isAdmin) => {
     
     const [campusId, setCampusId] = useState(parentCampusId);
     const [info, setInfo] = useState();
@@ -23,7 +24,7 @@ const CampusDetailOverview = ({campusId: parentCampusId}) => {
         setError,
         isLoading,
         refresh,
-    } = useFetch(apiCall);
+    } = useFetchNoAuth(apiCall);
 
     return (
         <>
@@ -46,7 +47,7 @@ const CampusDetailOverview = ({campusId: parentCampusId}) => {
                         {
                             locations.map((locationDetail) => (
                                 <li key={locationDetail._id}>
-                                    <LocationCard location={locationDetail}/>
+                                    <LocationCard location={locationDetail.organisation}/>
                                 </li>
                             ))
                         }
