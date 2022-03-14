@@ -6,6 +6,7 @@ const MarkerController = require('../controllers/MarkerController');
 const RelatedMarkerController = require('../controllers/RelatedMarkerController');
 const LikedMovieController = require('../controllers/LikedMovieController');
 const UserController = require('../controllers/UserController');
+const MarkerLinkController = require('../controllers/MarkerLinkController');
 const { withRole } = require('../services/auth/auth.services');
 const { roles } = require('../models/User');
 const upload = require("../utils/multer");
@@ -13,15 +14,13 @@ const upload = require("../utils/multer");
 const userController = new UserController();
 const markerController = new MarkerController();
 const relatedMarkerController = new RelatedMarkerController();
-const movieController = new MovieController();
-const reviewController = new ReviewController();
-const likedMovieController = new LikedMovieController();
+const markerLinkController = new MarkerLinkController();
 
 const authRouter = express.Router();
 const adminRouter = express.Router();
 
 // markers
-authRouter.get('/markers', markerController.getMarkers); // overview
+authRouter.get('/markers', markerController.getCampusses); // overview
 authRouter.get('/markers/:id', markerController.getMarkerById); // detail
 // authRouter.get('/directors/:id/movies', directorController.getMoviesByDirectorId); // detail
 adminRouter.post('/markers', markerController.createMarker); // add
@@ -30,8 +29,12 @@ adminRouter.patch('/markers/:id', markerController.updateMarkerById); // update
 // adminRouter.delete('/directors/:id/delete', directorController.deleteDirectorByIdAndMovies); // delete
 
 // Related markers
-authRouter.get('/markers/:id/relatedMarkers', relatedMarkerController.getRelatedByMarker); // overview
-authRouter.post('/markers/:id/relatedMarkers', relatedMarkerController.createRelatedByMarker); // create relatedmarker
+authRouter.get('/markers/:id/relatedMarkers', relatedMarkerController.getRelatedByMarkerId); // overview
+authRouter.post('/markers/:id/relatedMarkers', relatedMarkerController.createRelatedByMarkerId); // create relatedmarker
+
+// markerlink
+// authRouter.get('/markers/:campusId/:organisationId', markerLinkController.getRelatedByMarkerId); // overview
+adminRouter.post('/markers/link', markerLinkController.createMarkerLink); // create relatedmarker
 
 // Movies
 // authRouter.get('/movies/paginate/:page/:perPage', movieController.getMoviesPaginated); // overview
