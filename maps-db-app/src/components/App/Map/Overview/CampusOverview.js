@@ -1,42 +1,36 @@
-import { Link } from 'react-router-dom';
-import { Routes } from '../../../../core/routing';
 import useFetch from '../../../../core/hooks/useFetch';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
-// import Button from '../../../Design/Button';
-import { fetchCampusses } from '../../../../core/modules/map/api';
+import { fetchCampusses, fetchRelatedByCampus, fetchRelatedByCampusId } from '../../../../core/modules/map/api';
 import useAdmin from '../../../../core/hooks/useAdmin';
-import { useCallback, useState, useMemo } from 'react';
-import AddIcon from '../../../Design/AddIcon';
+import { useCallback, useEffect, useState } from 'react';
 import CampusDetailOverview from './CampusDetailOverview';
 import Map, {
     Marker,
     Popup,
     NavigationControl,
-    FullscreenControl,
     ScaleControl,
     GeolocateControl
 } from 'react-map-gl';
 import GeocoderControl from '../../../Design/MapControls';
 
 import Pin from './pin';
-import { isAdmin } from '../../../../core/modules/auth/utils';
-import Modal from '../../../Shared/Modal';
 import CreateOrEditMarker from './Form/CreateOrEditMarker';
 import AddButton from '../../../Design/AddButton';
 import EditButton from '../../../Design/EditButton';
+import storage from '../../../../core/storage';
+import useFetchNoAuth from '../../../../core/hooks/useFetchNoAuth';
+import Pin2 from './pin2';
 
 const CampusOverview = () => {
-
-    
-    const [campus, setCampus] = useState();   
+    const [campus, setCampus] = useState();
+    const [relatedMarkers, setRelatedMarkers] = useState();
     const [info, setInfo] = useState();
     const [toggleInfo, setToggleInfo] = useState(false);
     const [popupInfo, setPopupInfo] = useState(null);
     
     const [activeMarker, setActiveMarker] = useState();
     const [deleteMarker, setDeleteMarker] = useState();
-
 
     const apiCall = useCallback(() => {
         return fetchCampusses();
@@ -45,10 +39,19 @@ const CampusOverview = () => {
     const {
         data,
         error,
-        setError,
         isLoading,
         refresh,
-    } = useFetch(apiCall);
+    } = useFetchNoAuth(apiCall);
+
+    useEffect(() => {
+        if(campus){
+            fetch(`${process.env.REACT_APP_BASE_API}/markers/${campus.id}/relatedMarkers`, {
+                'Content-type': 'application/json'
+            })
+            .then(res => res.json())
+            .then(data => setRelatedMarkers(data));
+        }
+    }, [campus]);
 
     const handleToggle = (campusId=null) => {
         if(campusId) {
@@ -89,7 +92,7 @@ const CampusOverview = () => {
 
                         {
                             <>
-                                <div id="map" className={toggleInfo ? 'hide' : 'show'}>
+                                <div id="map" className={(toggleInfo ? 'hide ' : 'show ') + (admin ? '' : 'fullscreen')}>
                                     <Map
                                         initialViewState={{
                                             latitude: 51.04097,
@@ -120,6 +123,19 @@ const CampusOverview = () => {
                                             </Marker>
                                             ))
                                         }
+                                        {relatedMarkers &&(
+                                            relatedMarkers.map((marker, index) => (
+                                                <Marker
+                                                    key={`marker-${index}`}
+                                                    campusId={marker.organisation.id}
+                                                    longitude={marker.organisation.longitude}
+                                                    latitude={marker.organisation.latitude}
+                                                    anchor="bottom"
+                                                >
+                                                    <Pin2/>
+                                                </Marker>
+                                            ))
+                                        )}
                                         
                                         {
                                             popupInfo && (
@@ -143,7 +159,6 @@ const CampusOverview = () => {
                                                 </Popup>
                                             )
                                         }
-
                                         <GeocoderControl mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} position={"top-left"}/>
                                     </Map> 
                                 </div>
@@ -151,10 +166,10 @@ const CampusOverview = () => {
                                 {
                                     campus && (
                                         <>
-                                            <div className={'toggler ' + (toggleInfo ? 'hide' : 'show')} onClick={() => handleToggle()}>
+                                            <div className={'toggler ' + (toggleInfo ? 'hide ' : 'show ') + (admin ? '' : 'fullscreen')} onClick={() => handleToggle()}>
                                                 <span>&gt;</span>
                                             </div>
-                                            <section className={'infoSidebar ' + (toggleInfo ? 'hide' : 'show')}>
+                                            <section className={'infoSidebar ' + (toggleInfo ? 'hide ' : 'show ') + (admin ? '' : 'fullscreen')}>
                                                 <div className='infoHeader'>
                                                     <h3>{campus.name}</h3>
                                                     <p>Icon: Address comes here</p> 
@@ -168,7 +183,7 @@ const CampusOverview = () => {
                                                 <article>
                                                     <h4>Samenwerkingen</h4> 
                                                     <div className='scrollList'>
-                                                        <CampusDetailOverview campusId={campus.id}/>
+                                                        <CampusDetailOverview campusId={campus.id} isAdmin={admin}/>
                                                     </div>
                                                 </article>
                                             </section>
