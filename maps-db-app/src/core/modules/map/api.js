@@ -26,11 +26,13 @@ const fetchRelatedByCampusId = (campus) => (headers) => {
     }
 }
 
-const createMarkerLink = (organisation, campusId) => async (headers) => {
-    console.log('we here');
+const createMarkerLink = (organisation, campusId, user) => {
     return fetch(`${process.env.REACT_APP_BASE_API}/markers/link`, {
         method:'POST',
-        headers: createHeaders(headers),
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': `${user.Authorization}`
+        },
         body: JSON.stringify({
             organisationId: organisation.id,
             campusId: campusId
@@ -38,26 +40,12 @@ const createMarkerLink = (organisation, campusId) => async (headers) => {
     });
 }
 
-const createMarker = (data) => async (headers) => {
+const createMarker = (data) => (headers) =>{
     const campusId = data.campus;
-    delete data.campus;
     return fetch(`${process.env.REACT_APP_BASE_API}/markers`, {
         method:'POST',
         headers: createHeaders(headers),
         body: JSON.stringify(data),
-    })
-    .then((response) => response.json())
-    .then(async (callbackData) => {
-        if(data.type !== "campus") {
-            return fetch(`${process.env.REACT_APP_BASE_API}/markers/link`, {
-                method:'POST',
-                headers: createHeaders(headers),
-                body: JSON.stringify({
-                    organisationId: callbackData.idd,
-                    campusId: campusId
-                })
-            });
-        }
     })
 }
 

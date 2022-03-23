@@ -1,6 +1,7 @@
 const NotFoundError = require('../errors/NotFoundError');
 const ValidationError = require('../errors/ValidationError');
 const { Marker } = require('../models/Marker');
+const { MarkerLink } = require('../models/MarkerLink');
 const isSuper = require('../utils/authorization');
 
 class MarkerController {
@@ -111,8 +112,28 @@ class MarkerController {
             const marker = new Marker({
                 ...req.body,
             });
+            if(req.body.type === "campus") {
+                delete req.body.campus;
+            }
             const save = await marker.save();
-            res.status(200).json(save);
+            if(req.body.type !== "campus") {
+                this.createMarkerLink(req, save, res, next);
+            } else {
+                res.status(200).json(save);
+            }
+        } catch (e) {
+            next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
+        }
+    }
+
+    createMarkerLink = async(req, save, res, next) => {
+        try {
+            const markerLink = new MarkerLink({
+                "campusId": req.body.campus,
+                "organisationId": save.id
+            });
+            const result = await markerLink.save();
+            res.status(200).json(result);
         } catch (e) {
             next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
         }

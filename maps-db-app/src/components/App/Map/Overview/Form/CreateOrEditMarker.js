@@ -20,14 +20,14 @@ const CreateOrEditMarker = ({marker, onUpdate, onDismiss }) => {
                 ? createMarker(data)
                 : updateMarker(data)
         )
-            .then((data) => {
-                // let parent know data is updated
-                onUpdate(data);
-            })
-            .catch((err) => {
-                setError(err);
-                setIsLoading(false);
-            });
+        .then((data) => {
+            // let parent know data is updated
+            onUpdate(data);
+        })
+        .catch((err) => {
+            setError(err);
+            setIsLoading(false);
+        });
     };
 
     return (

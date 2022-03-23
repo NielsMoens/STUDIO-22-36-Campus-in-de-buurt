@@ -9,10 +9,9 @@ const isSuper = require('../utils/authorization');
 class MarkerLinkController {
     
     createMarkerLink = async(req, res, next) => {
-        console.log('we here')
         try {
+            console.log(req.body);
             req = isSuper(req);
-
             const markerLink = new MarkerLink({
                 ...req.body,
             });
