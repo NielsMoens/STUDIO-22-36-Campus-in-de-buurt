@@ -175,6 +175,8 @@ p{
                 padding: 16px;
             }
             img {
+                object-fit: cover;
+                aspect-ratio: 1;
                 width: 100%;
             }
         }
