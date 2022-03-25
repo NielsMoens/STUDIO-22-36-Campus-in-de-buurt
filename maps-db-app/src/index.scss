@@ -109,13 +109,27 @@ p{
     right: 600px;
     width: 16px;
     height: calc(100vh - 56px);
-    background-color: red;
+    background-color: #f5842d
     transition: all $transition-time;
     &.hide{
         right: 0;
         span {
             transform: rotate(180deg);
         }
+    }
+}
+
+.mapboxgl-ctrl-geocoder--input {
+    color: black;
+}
+
+.suggestions-wrapper {
+    .suggestions li, .mapboxgl-ctrl-geocoder--suggestion-title {
+        color: black !important;
+    }
+    .mapboxgl-ctrl-geocoder--suggestion-address {
+        color: black !important;
+        padding-bottom: .5rem;
     }
 }
 
