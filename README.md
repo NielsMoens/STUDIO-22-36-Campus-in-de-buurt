@@ -80,81 +80,46 @@ Een webapplicatie waarop een interactieve kaart van Gent. Op deze kaart wordt we
 
 ### Built With
 
-* [Craft CMS](https://craftcms.com/)
+* [React](https://reactjs.org/)
+* [Typescript](https://www.typescriptlang.org/)
 * [Bootstrap](https://getbootstrap.com)
-* [materialdesignicons](https://materialdesignicons.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
  
 <!-- GETTING STARTED -->
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Hier vind je de instructie hoe je die project lokaal kan op zetten 
 
 ### Prerequisites
 
 List of things you need to use and how to install them.
-* [php 7.4+](https://www.php.net/manual/en/install.windows.php) & [MySQL 5.7+](https://www.php.net/manual/en/install.windows.php)
-    * I used [XAMPP](https://www.php.net/manual/en/install.windows.php) to install both (windows only)
-* A MySql database manager 
-  * [MySQL Workbench](https://www.mysql.com/products/workbench/)
-  * [DataGrip](https://www.jetbrains.com/datagrip/)
-  * ...
-* Install the latest [composer](https://getcomposer.org/)
+* [DataGrip](https://www.jetbrains.com/datagrip/)
+* ...
+
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/NielsMoens/STUDIO-22-36-Campus-in-de-buurt
    ```
-2. Turn on your MySql server in [XAMPP](https://www.php.net/manual/en/install.windows.php) 
-   or use the windows terminal
+2. [XAMPP](https://www.php.net/manual/en/install.windows.php) 
    ```sh
-   mysql -u root -p
-   ```
-3. Create a new schema called "fablab-webapp"
-4. Import the MySql database that you cloned from this repo
-5. Run de php localhost server
-   or use the windows terminal
-   ```sh
-   php -S localhost:3000
-   ```
 
+   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-## Usage
-WIP
-_For more examples, please refer to the [Documentation](TODO)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Adobe Xd
-Here you find the [design process](https://xd.adobe.com/view/17defd7d-2cdd-4dcb-9deb-02f650c26be3-428d/)
+Here you find the [design process](https://xd.adobe.com/view/b0f68a50-4af9-4f77-a881-5fbc48e8c601-e5a5/)
 
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Init project
-- [x] easily scalable for the fablab staff (using craft CMS)
-- [x] add a README
-- [x] Add Styling (tailwind or bootstrap)
-- [ ] Report a problem page (topdesk API)
-- [ ] create custom pages for every machine or tool in the fablab 
-    - [ ] easily add items on the detail pages using craft cms backend 
-- [ ] User Testing
-- [ ] Deployment on Azure servers of Arteveldehs
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
 Niels Moens - [@nielsmoens](https://www.linkedin.com/in/niels-moens-6b065b134) - nielsmoens.dev@gmail.com
+Kobe Devi  -[@pgmgent-kobedevi]((https://www.linkedin.com/in/niels-moens-6b065b134)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -163,5 +128,4 @@ Niels Moens - [@nielsmoens](https://www.linkedin.com/in/niels-moens-6b065b134) -
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-url]: https://github.com/nielsmoens
 [linkedin-url]: https://www.linkedin.com/in/niels-moens-6b065b134
-[product-screenshot]: images/screenshot.png
 
