@@ -44,7 +44,6 @@ https://cloudinary.com/<br/>
 </div>
 
 
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -58,14 +57,10 @@ https://cloudinary.com/<br/>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -90,12 +85,6 @@ Een webapplicatie waarop een interactieve kaart van Gent. Op deze kaart wordt we
 <!-- GETTING STARTED -->
 ## Getting Started
 Hier vind je de instructie hoe je die project lokaal kan op zetten 
-
-### Prerequisites
-
-List of things you need to use and how to install them.
-* [DataGrip](https://www.jetbrains.com/datagrip/)
-* ...
 
 
 ### Installation
