@@ -99,15 +99,31 @@ List of things you need to use and how to install them.
 
 
 ### Installation
+## APP
 
 1. Clone the repo
    ```sh
    git clone https://github.com/NielsMoens/STUDIO-22-36-Campus-in-de-buurt
    ```
-2. [XAMPP](https://www.php.net/manual/en/install.windows.php) 
-   ```sh
-
+2. download node js [Node Js](https://nodejs.org/en/download/) 
+3. Installeer al de npm packages
+    ```sh
+   yarn add 
    ```
+4. Host de applicatie lokaal 
+    ```sh
+   yarn start
+   ```
+## API
+3. Installeer al de npm packages
+    ```sh
+   yarn add 
+   ```
+4. Host de applicatie lokaal 
+    ```sh
+   yarn dev
+   ```
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -124,8 +140,4 @@ Kobe Devi  -[@pgmgent-kobedevi]((https://www.linkedin.com/in/niels-moens-6b065b1
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-url]: https://github.com/nielsmoens
-[linkedin-url]: https://www.linkedin.com/in/niels-moens-6b065b134
 
