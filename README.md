@@ -125,7 +125,7 @@ Here you find the [design process](https://xd.adobe.com/view/78f1e8d3-9aab-41c7-
 <!-- CONTACT -->
 ## Contact
 Niels Moens - [@nielsmoens](https://www.linkedin.com/in/niels-moens-6b065b134) - nielsmoens.dev@gmail.com
-Kobe Devi  -[@pgmgent-kobedevi]((https://www.linkedin.com/in/niels-moens-6b065b134)
+Kobe Devi  -[@pgmgent-kobedevi](https://www.linkedin.com/in/niels-moens-6b065b134)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
