@@ -11,14 +11,15 @@ class MarkerLinkController {
     createMarkerLink = async(req, res, next) => {
         try {
             console.log(req.body);
-            req = isSuper(req);
             const markerLink = new MarkerLink({
-                ...req.body,
+                "campusId": req.body.campus,
+                "organisationId": req.body.organisation
             });
+            console.log(markerLink);
             const result = await markerLink.save();
             res.status(200).json(result);
         } catch (e) {
-            next(e);
+            next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
         }
     }
 

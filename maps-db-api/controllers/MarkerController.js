@@ -15,6 +15,17 @@ class MarkerController {
         }
     }
 
+    getOrganisations = async(req, res, next) => {
+        try {
+            const markers = await Marker.find({published: true, type: { $ne: "campus" }}).sort({
+                name: 'desc'
+            }).exec();
+            res.status(200).json(markers);
+        } catch (e) {
+            next(e);
+        }
+    }
+
     getMarkerById = async(req, res, next) => {
         try {
             const {id} = req.params;

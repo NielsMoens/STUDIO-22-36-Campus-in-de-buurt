@@ -5,15 +5,11 @@ const items = [{
     'label': 'Map',
     'route': Routes.Map,
     'icon': null,
-}/*, {
-    'label': 'Directors',
-    'route': Routes.Directors,
+}, {
+    'label': 'Organisations',
+    'route': Routes.Organisations,
     'icon': null,
 }, {
-    'label': 'Liked movies',
-    'route': Routes.LikedMovies,
-    'icon': null,
-}*/, {
     'label': 'User',
     'route': Routes.UsersEdit,
     'icon': null,

@@ -36,6 +36,12 @@ authRouter.post('/markers/:id/relatedMarkers', relatedMarkerController.createRel
 // authRouter.get('/markers/:campusId/:organisationId', markerLinkController.getRelatedByMarkerId); // overview
 adminRouter.post('/markers/link', markerLinkController.createMarkerLink); // create relatedmarker
 
+// organisations
+authRouter.get('/organisations', markerController.getOrganisations); // overview
+authRouter.get('/organisations/:id', markerController.getMarkerById); // overview
+authRouter.post('/organisations/link/create', markerLinkController.createMarkerLink); // overview
+
+
 // Movies
 // authRouter.get('/movies/paginate/:page/:perPage', movieController.getMoviesPaginated); // overview
 // authRouter.get('/movies', movieController.getMovies); // overview

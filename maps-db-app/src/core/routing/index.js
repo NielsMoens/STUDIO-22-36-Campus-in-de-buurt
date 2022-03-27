@@ -15,6 +15,10 @@ const Routes = Object.freeze({
     // MoviesCreateReview: '/movies/:id/review',
 
     Map: '/map',
+    Organisations: '/organisations',
+    OrganisationsDetail: '/organisations/:id',
+    OrganisationsCreate: '/organisations/create',
+    OrganisationsEdit: '/organisations/:id/edit',
 
     // Directors: '/directors',
     // DirectorsDetail: '/directors/:id',

@@ -18,7 +18,6 @@ import Pin from './pin';
 import CreateOrEditMarker from './Form/CreateOrEditMarker';
 import AddButton from '../../../Design/AddButton';
 import EditButton from '../../../Design/EditButton';
-import storage from '../../../../core/storage';
 import useFetchNoAuth from '../../../../core/hooks/useFetchNoAuth';
 import Pin2 from './pin2';
 
