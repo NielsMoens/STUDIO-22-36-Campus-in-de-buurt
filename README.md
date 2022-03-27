@@ -78,6 +78,7 @@ Een webapplicatie waarop een interactieve kaart van Gent. Op deze kaart wordt we
 * [React](https://reactjs.org/)
 * [Typescript](https://www.typescriptlang.org/)
 * [Bootstrap](https://getbootstrap.com)
+* [Mapbox-GL-JS](https://visgl.github.io/react-map-gl/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -118,7 +119,7 @@ Hier vind je de instructie hoe je die project lokaal kan op zetten
 
 
 ## Adobe Xd
-Here you find the [design process](https://xd.adobe.com/view/b0f68a50-4af9-4f77-a881-5fbc48e8c601-e5a5/)
+Here you find the [design process](https://xd.adobe.com/view/78f1e8d3-9aab-41c7-88bd-bf1ea4d7d105-2da2/)
 
 
 <!-- CONTACT -->
