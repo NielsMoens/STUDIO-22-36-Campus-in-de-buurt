@@ -7,7 +7,7 @@ const Header = () => {
         <header>
             <ul className="headerNav">
                 <li>
-                    <a className='logo' href="/">Logo placeholder</a>
+                    <a className='logo' href="/"><img src={process.env.PUBLIC_URL + '/arteveldehogeschool.png'}/></a>
                 </li>
                 <li className="nav-item text-nowrap">
                     <LogoutButton/>

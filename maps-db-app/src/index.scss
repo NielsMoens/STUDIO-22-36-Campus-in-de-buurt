@@ -109,7 +109,7 @@ p{
     right: 600px;
     width: 16px;
     height: calc(100vh - 56px);
-    background-color: #f5842d
+    background-color: #f5842d;
     transition: all $transition-time;
     &.hide{
         right: 0;
