@@ -26,6 +26,12 @@ markerLinkSchema.virtual('organisation', {
     foreignField: '_id',
     justOne: true,
 });
+markerLinkSchema.virtual('campus', {
+    ref:'Marker',
+    localField: 'campusId',
+    foreignField: '_id',
+    justOne: true,
+});
 
 const MarkerLink = mongoose.model('MarkerLink', markerLinkSchema);
 
