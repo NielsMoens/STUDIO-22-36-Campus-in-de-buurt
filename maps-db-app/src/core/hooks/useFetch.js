@@ -105,7 +105,7 @@ const useFetch = (apiCall) => {
         nextPage,
         prevPage,
         refresh,
-        isLoading,
+        isLoading
     };
 };
 

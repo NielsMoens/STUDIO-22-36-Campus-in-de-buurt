@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import useFetch from '../../../../core/hooks/useFetch';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
@@ -10,7 +9,8 @@ import CreateOrEditMarker from './Form/CreateOrEditMarker';
 import AddButton from '../../../Design/AddButton';
 import EditButton from '../../../Design/EditButton';
 import useFetchNoAuth from '../../../../core/hooks/useFetchNoAuth';
-import { route, Routes } from '../../../../core/routing';
+import Table from "../../../Design/Table";
+import OrgTable from "../../../Design/OrgTable";
 
 const OrganisationsOverview = () => {
     const [campus, setCampus] = useState();
@@ -18,6 +18,9 @@ const OrganisationsOverview = () => {
     
     const [activeMarker, setActiveMarker] = useState();
     const [deleteMarker, setDeleteMarker] = useState();
+
+    const [currentUser, setCurrentUser] = useState();
+    const [deleteUser, setDeleteUser] = useState();
 
     const apiCall = useCallback(() => {
         return fetchOrganisations();
@@ -76,16 +79,14 @@ const OrganisationsOverview = () => {
                         data && (
                             <>
                               
-                              {
-                                data.map((org) => (
-                                    <li key={org._id}>
-                                        <Link to={route(Routes.OrganisationsDetail, {id: org._id})}>
-                                            {org.name}
-                                        </Link>
-                                        {org.type}
-                                    </li>
-                                )) 
-                              } 
+                                {
+                                    <OrgTable
+                                        data={data}
+                                        setter={setCurrentUser}
+                                        deleter={setDeleteUser}
+                                    />
+
+                                } 
                             </>
                         )
                     }
