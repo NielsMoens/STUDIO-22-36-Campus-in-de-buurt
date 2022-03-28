@@ -1,7 +1,6 @@
-import useFetch from '../../../../core/hooks/useFetch';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
-import { fetchCampusses, fetchRelatedByCampus, fetchRelatedByCampusId } from '../../../../core/modules/map/api';
+import { fetchCampusses } from '../../../../core/modules/map/api';
 import useAdmin from '../../../../core/hooks/useAdmin';
 import { useCallback, useEffect, useState } from 'react';
 import CampusDetailOverview from './CampusDetailOverview';
@@ -24,7 +23,6 @@ import Pin2 from './pin2';
 const CampusOverview = () => {
     const [campus, setCampus] = useState();
     const [relatedMarkers, setRelatedMarkers] = useState();
-    const [info, setInfo] = useState();
     const [toggleInfo, setToggleInfo] = useState(false);
     const [popupInfo, setPopupInfo] = useState(null);
     
@@ -85,9 +83,6 @@ const CampusOverview = () => {
             {
                 data && (
                     <>
-                        {
-                            info && <Alert color="info">{info}</Alert>
-                        }
 
                         {
                             <>

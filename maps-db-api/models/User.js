@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { LikedMovie } = require('./LikedMovie');
 
 const roles = {
     superadmin: 'superadmin',
     admin: 'admin',
-    user: 'user',
 }
 
 // schema
