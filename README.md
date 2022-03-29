@@ -95,17 +95,21 @@ Hier vind je de instructie hoe je die project lokaal kan op zetten
    ```sh
    git clone https://github.com/NielsMoens/STUDIO-22-36-Campus-in-de-buurt
    ```
-2. download node js [Node Js](https://nodejs.org/en/download/) 
-3. Installeer al de npm packages
+2. Download node js [Node Js](https://nodejs.org/en/download/)
+3. Navigeer naar de map "maps-db-app" en maak een nieuwe file aan '.env' in de root van deze map
+4. Kopieer de app .env data uit het "Belangrijke data" bestand dat je van ons hebt gekregen en plak deze in je nieuw aangemaakt .env file  
+5. Installeer al de npm packages
     ```sh
    yarn add
    ```
-4. Host de applicatie lokaal 
+6. Host de applicatie lokaal 
     ```sh
    nvm use 15.14.0
    yarn start
    ```
 ## API
+1. Navigeer naar de map "maps-db-api" en maak een nieuwe file aan '.env' in de root van deze map
+2. Kopieer de api .env data uit het "Belangrijke data" bestand dat je van ons hebt gekregen en plak deze in je nieuw aangemaakt .env file  
 3. Installeer al de npm packages
     ```sh
    yarn add 
@@ -115,7 +119,6 @@ Hier vind je de instructie hoe je die project lokaal kan op zetten
    nvm use 15.14.0
    yarn dev
    ```
-
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
