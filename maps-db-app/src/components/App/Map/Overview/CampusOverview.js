@@ -142,12 +142,6 @@ const CampusOverview = () => {
                                                 >
                                                     <div>
                                                         {popupInfo.campus}, |{' '}
-                                                        <a
-                                                            target="_new"
-                                                            href={`https://www.arteveldehogeschool.be/bij-ons-studeren/onze-locaties/${popupInfo.campus}`}
-                                                        >
-                                                            Website
-                                                        </a>
                                                     </div>
                                                     <img width="100%" src={popupInfo.imageLink} />
                                                 </Popup>

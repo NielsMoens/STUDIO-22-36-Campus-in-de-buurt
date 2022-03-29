@@ -17,7 +17,7 @@ class MarkerController {
 
     getOrganisations = async(req, res, next) => {
         try {
-            const markers = await Marker.find({published: true, type: { $ne: "campus" }}).sort({
+            const markers = await Marker.find({type: { $ne: "campus" }}).sort({
                 name: 'desc'
             }).exec();
             res.status(200).json(markers);
@@ -88,6 +88,21 @@ class MarkerController {
             res.status(200).json(result);
         } catch (e) {
             next(e.name && e.name === "ValidationError" ? new ValidationError(e) : e);
+        }
+    }
+
+    deleteMarkerById = async(req, res, next) => {
+        try {
+            const {id} = req.params;
+            const marker = await Marker.findById(id).exec();
+            if(marker) {
+                marker.remove();
+                res.status(200).json(marker);
+            }  else {
+                next(new NotFoundError());
+            }
+        } catch (e) {
+            next(e);
         }
     }
 

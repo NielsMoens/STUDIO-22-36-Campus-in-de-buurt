@@ -14,7 +14,6 @@ class MarkerLinkController {
                 "campusId": req.body.campus,
                 "organisationId": req.body.organisation
             });
-            console.log(markerLink);
             const result = await markerLink.save();
             res.status(200).json(result);
         } catch (e) {

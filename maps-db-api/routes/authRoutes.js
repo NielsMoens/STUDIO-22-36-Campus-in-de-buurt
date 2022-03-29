@@ -32,6 +32,7 @@ adminRouter.post('/markers/link', markerLinkController.createMarkerLink); // cre
 // organizations
 authRouter.get('/organizations', markerController.getOrganisations); // overview
 authRouter.get('/organizations/:id', markerController.getMarkerById); // overview
+authRouter.delete('/organizations/:id', markerController.deleteMarkerById); // overview
 authRouter.post('/organizations/link/create', markerLinkController.createMarkerLink); // overview
 authRouter.get('/organizations/link/:id', markerLinkController.getMarkerLinkById); // overview
 authRouter.delete('/organizations/link/:id', markerLinkController.deleteMarkerLinkById); // overview

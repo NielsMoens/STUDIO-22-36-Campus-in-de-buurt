@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { MarkerLink } = require('./MarkerLink');
 
 const types = {
     campus: "campus",
@@ -44,6 +45,12 @@ const markerSchema = new mongoose.Schema({
   toObject: {
       virtuals: true,
   }
+});
+
+// everytime a organisation gets removed
+markerSchema.pre(['remove', 'deleteMany'] , function() {
+    const marker = this;
+    return MarkerLink.remove({organisationId: marker._id});
 });
 
 const Marker = mongoose.model('Marker', markerSchema);

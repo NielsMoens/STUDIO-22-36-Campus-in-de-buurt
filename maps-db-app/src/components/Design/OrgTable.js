@@ -12,7 +12,6 @@ const OrgTable = ({data, setter, deleter}) => {
                     <th>Name</th>
                     <th>type</th>
                     <th>contact</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -35,9 +34,6 @@ const OrgTable = ({data, setter, deleter}) => {
                                 <Link to={route(Routes.OrganisationsDetail, {id: org._id})}>
                                     {org.contact ? org.contact : "Geen contact gegevens"}
                                 </Link>
-                            </td>
-                            <td>
-                                <EditButton editor={() => setter(org)}/>
                             </td>
                     </tr>
                 ))}

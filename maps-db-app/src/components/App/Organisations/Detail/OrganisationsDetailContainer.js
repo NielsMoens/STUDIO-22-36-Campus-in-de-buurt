@@ -5,7 +5,7 @@ import Alert from '../../../Design/Alert';
 import { Redirect, Route, Switch, useParams } from 'react-router';
 import { useCallback } from 'react';
 import { Routes } from '../../../../core/routing';
-import EditOrganisation from './Edit/EditOrganisation';
+// import EditOrganisation from './Edit/EditOrganisation';
 import OrganisationDetail from './Detail/OrganisationDetail';
 import AdminRoute from '../../../Shared/Route/AdminRoute';
 
