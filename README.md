@@ -98,10 +98,11 @@ Hier vind je de instructie hoe je die project lokaal kan op zetten
 2. download node js [Node Js](https://nodejs.org/en/download/) 
 3. Installeer al de npm packages
     ```sh
-   yarn add 
+   yarn add
    ```
 4. Host de applicatie lokaal 
     ```sh
+   nvm use 15.14.0
    yarn start
    ```
 ## API
@@ -111,6 +112,7 @@ Hier vind je de instructie hoe je die project lokaal kan op zetten
    ```
 4. Host de applicatie lokaal 
     ```sh
+   nvm use 15.14.0
    yarn dev
    ```
 
