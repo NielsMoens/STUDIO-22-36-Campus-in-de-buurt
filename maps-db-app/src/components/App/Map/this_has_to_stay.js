@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
-import { getValidationErrors } from "../../../../core/utils/validation";
-import Button from "../../../Design/Button";
-import Input from "../../../Design/Input";
+import { getValidationErrors } from "../../../core/utils/validation";
+import Button from "../../Design/Button";
+import Input from "../../Design/Input";
 import * as yup from 'yup';
 import {format} from 'date-fns'
 import DirectorSelect from "../../Directors/Select/DirectorSelect";
 
+// idk why but if you remove this file MapControls.tsx in the design folder fails
+
 const schema = yup.object().shape({
     title: yup.string().required(),
     directorId: yup.string().required().nullable(),
-    coverLink: yup.string().required("Cover image is a required field"),
+    coverLink: yup.string(),
     releaseDate: yup.string().required(),
     duration: yup.number().required(),
 });
@@ -34,31 +36,31 @@ const MovieForm = ({file, setFile, onSubmit, initialData={}, disabled}) => {
 
     const handleChange = (e) => {
         
-        // if(e.target.localName === 'select') {
-        //     // insanely dumb workaround to actually show the visually update 
-        //     // because: virtual fields only updates when fetched again
-        //     const text = e.target.[e.target.options.selectedIndex].innerHTML;
-        //     const res = text.split(" ");
-        //     const firstName = res.splice(0, Math.ceil(res.length / 2));
-        //     const lastName = res.splice((Math.ceil(res.length / 2)) - 1, res.length);
-        //     setData({
-        //         ...data,
-        //         director: {
-        //             _id: e.target.value,
-        //             firstName: firstName[0],
-        //             lastName: lastName[0]
-        //         },
-        //         directorId: e.target.value,
-        //     })
-        // } else {
-        //     if(e.target.name === 'coverLink') {
-        //         setFile(e.target.files[0]);
-        //     }
-        //     setData({
-        //        ...data,
-        //        [e.target.name]: e.target.value
-        //     })
-        // }
+        if(e.target.localName === 'select') {
+            // insanely dumb workaround to actually show the visually update 
+            // because: virtual fields only updates when fetched again
+            const text = e.target.[e.target.options.selectedIndex].innerHTML;
+            const res = text.split(" ");
+            const firstName = res.splice(0, Math.ceil(res.length / 2));
+            const lastName = res.splice((Math.ceil(res.length / 2)) - 1, res.length);
+            setData({
+                ...data,
+                director: {
+                    _id: e.target.value,
+                    firstName: firstName[0],
+                    lastName: lastName[0]
+                },
+                directorId: e.target.value,
+            })
+        } else {
+            if(e.target.name === 'coverLink') {
+                setFile(e.target.files[0]);
+            }
+            setData({
+               ...data,
+               [e.target.name]: e.target.value
+            })
+        }
     }
 
     const validate = useCallback((data, onSuccess) => {
