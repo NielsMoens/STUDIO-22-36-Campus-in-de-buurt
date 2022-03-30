@@ -4,14 +4,14 @@ import { fetchCampusses } from '../../../../core/modules/map/api';
 import useAdmin from '../../../../core/hooks/useAdmin';
 import { useCallback, useEffect, useState } from 'react';
 import CampusDetailOverview from './CampusDetailOverview';
-import Map, {
+import ReactMapGL, {
     Marker,
     Popup,
     NavigationControl,
     ScaleControl,
     GeolocateControl
 } from 'react-map-gl';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 import GeocoderControl from '../../../Design/MapControls';
 
 import Pin from './pin';
@@ -20,13 +20,8 @@ import AddButton from '../../../Design/AddButton';
 import EditButton from '../../../Design/EditButton';
 import useFetchNoAuth from '../../../../core/hooks/useFetchNoAuth';
 import Pin2 from './pin2';
-
-// https://stackoverflow.com/questions/65434964/mapbox-blank-map-react-map-gl-reactjs
-// The following is required to stop "npm build" from transpiling mapbox code.
-// notice the exclamation point in the import.
-// @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 
 const CampusOverview = () => {
     const [campus, setCampus] = useState();
@@ -78,6 +73,9 @@ const CampusOverview = () => {
         refresh();
     }
 
+    mapboxgl.workerClass = MapboxWorker;
+    ReactMapGL.workerClass = MapboxWorker;
+
     return (
         <>
             {
@@ -95,7 +93,7 @@ const CampusOverview = () => {
                         {
                             <>
                                 <div id="map" className={(toggleInfo ? 'hide ' : 'show ') + (admin ? '' : 'fullscreen')}>
-                                    <Map
+                                    <ReactMapGL
                                         initialViewState={{
                                             latitude: 51.04097,
                                             longitude: 3.728,
@@ -156,7 +154,7 @@ const CampusOverview = () => {
                                             )
                                         }
                                         <GeocoderControl mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} position={"top-left"}/>
-                                    </Map> 
+                                    </ReactMapGL> 
                                 </div>
 
                                 {
