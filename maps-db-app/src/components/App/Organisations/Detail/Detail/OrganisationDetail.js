@@ -48,7 +48,7 @@ const OrganisationDetail = ({Organisation}) => {
     }
 
     return (
-        <>
+        <div className="container">
             {
                 info && (
                     <>
@@ -95,7 +95,7 @@ const OrganisationDetail = ({Organisation}) => {
                     />
                 )
             }
-        </>
+        </div>
     );
 };
 

@@ -45,7 +45,7 @@ const OrganisationsOverview = () => {
             }
 
             {   
-               <>
+               <div className='container'>
                     {
                         data && (
                             <>
@@ -71,7 +71,7 @@ const OrganisationsOverview = () => {
                             />
                         )
                     }
-                </>
+                </div>
             }
             
         </>

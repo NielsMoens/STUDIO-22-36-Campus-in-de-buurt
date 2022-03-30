@@ -159,9 +159,7 @@ const CampusOverview = () => {
                                             </div>
                                             <section className={'infoSidebar ' + (toggleInfo ? 'hide ' : 'show ') + (admin ? '' : 'fullscreen')}>
                                                 <div className='infoHeader'>
-                                                    <h3>{campus.name}</h3>
-                                                    <p>Icon: Address comes here</p> 
-                                                    <button onClick={() => handleToggle()}>Toggle</button>
+                                                    <h3>{campus.name}</h3> 
                                                 </div>
 
                                                 {

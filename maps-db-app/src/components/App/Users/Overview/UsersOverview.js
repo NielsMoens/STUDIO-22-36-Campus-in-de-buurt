@@ -58,7 +58,7 @@ const UsersOverview = () => {
     }
 
     return (
-        <>
+        <div className='container'>
             {
                 error && <Alert color="danger">{error.message}</Alert>
             }
@@ -138,7 +138,7 @@ const UsersOverview = () => {
                     </>
                 )
             }
-        </>
+        </div>
     )
 };
 
